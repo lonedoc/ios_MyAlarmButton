@@ -1,0 +1,41 @@
+/* 
+  Localizable.strings
+  alarmbutton
+
+  Created by Rubeg NPO on 01/06/2020.
+  Copyright © 2020 Rubeg NPO. All rights reserved.
+*/
+
+"registration" = "Регистрация";
+"pick_city" = "Выберите город:";
+"pick_company" = "Выберите ЧОП:";
+"enter_phone_number" = "Введите номер телефона:";
+"get_pass_code" = "Получить код";
+"done" = "Готово";
+"error" = "Ошибка";
+"load_data_error_message" = "Не удалось загрузить данные"; // TODO: Rename as load_data_error_message
+"parse_error_message" = "Не удалось обработать данные";
+"network_error_message" = "Не удалось выполнить запрос";
+"unknown_error_message" = "Неизвестная ошибка"; // TODO: Create more clear message
+"back" = "Назад";
+"retry" = "Повторить попытку";
+"enter_password_from_sms" = "На ваш номер отправлено смс-сообщение с паролем. Введите его в текстовое поле ниже:";
+"sms_password_tip" = "Если сообщение не пришло в течение 2-х минут, попробуйте заново запросить пароль.";
+"password" = "Пароль";
+"cancel" = "Отмена";
+"proceed" = "Продолжить";
+"address_not_found_message" = "Адрес сервера не найден";
+"address_error_message" = "Некорректный формат IP-адреса";
+"connection_error_message" = "Не удалось установить соединение с сервером";
+"alarm" = "Тревога";
+"cancel_alarm" = "Отменить тревогу";
+"enter_security_code" = "Код безопасности";
+"enter_security_code_message" = "Введите код безопасности";
+"security_code" = "Код безопасности";
+"wrong_code" = "Неправильный код";
+"wrong_code_message" = "Не удалось отменить тревогу. Введен неправильный код безопасности";
+"unknown_error" = "Неизвестная ошибка";
+"cancellation_failed_message" = "Не удалось отменить тревогу";
+"phone_number_not_found_message" = "Не указан номер телефона";
+"company_not_found_message" = "Не выбран ЧОП";
+"time_left" = "Оставшееся время:";
