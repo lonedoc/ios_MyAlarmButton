@@ -246,7 +246,7 @@ class LoginPresenter {
         }
         
         if let phone = phoneNumber {
-            cacheManager.set(phone: phone)
+            cacheManager.set(phone: extractDigits(text: phone))
         }
     }
         
