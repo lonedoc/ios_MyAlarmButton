@@ -12,6 +12,7 @@ extension Notification.Name {
     static let didReceiveRegistrationResult = Notification.Name("didReceiveRegistrationResult")
     static let didReceivePasswordRequestResult = Notification.Name("didReceivePasswordRequestResult")
     static let didReceiveCancelAlarmRequestResult = Notification.Name("didReceiveCancelAlarmRequestResult")
+    static let didReceiveInvalidTokenMessage = Notification.Name("didReceiveInvalidTokenMessage")
 }
 
 // {"$c$":"regok","tid":"D68CB802-46B2-417C-A103-7A6146264781"}

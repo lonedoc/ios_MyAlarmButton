@@ -15,11 +15,16 @@ class MainPresenter {
     private let locationService: LocationService
     
     private let ip: [String]
-    private var currentIpIndex = 0
+    private var currentIpIndex = 0 // TODO: Make it thread-safe
     
-    init(networkService: NetworkService, locationService: LocationService, ip: [String], currentIpIndex: Int = 0) {
+    private let phone: String
+    private let password: String
+    
+    init(networkService: NetworkService, locationService: LocationService, phone: String, password: String, ip: [String], currentIpIndex: Int = 0) {
         self.networkService = networkService
         self.locationService = locationService
+        self.phone = phone
+        self.password = password
         self.ip = ip
         self.currentIpIndex = currentIpIndex
     }
@@ -45,6 +50,10 @@ class MainPresenter {
                 message: "cancellation_failed_message".localized
             )
         }
+    }
+    
+    @objc func didReceiveInvalidTokenMessage(notification: Notification) {
+        sendRegistrationRequest()
     }
     
     private func sendCancelAlarmRequest(code: String) {
@@ -96,6 +105,49 @@ class MainPresenter {
         }
     }
     
+    private func sendRegistrationRequest() {
+        guard ip.count > 0 else {
+            view?.showAlertDialog(
+                title: "error".localized,
+                message: "address_not_found_message".localized
+            )
+            return
+        }
+        
+        let ipAddress = ip[currentIpIndex % ip.count]
+        
+        guard let address = try? InetAddress.create(address: ipAddress, port: 9010) else {
+            view?.showAlertDialog(
+                title: "error".localized,
+                message: "address_error_message".localized
+            )
+            return
+        }
+        
+        let request = RegistrationRequest(phone: phone, password: password)
+        
+        if !networkService.isStarted {
+            do {
+                try networkService.start()
+            } catch let error {
+                view?.showAlertDialog(
+                    title: "error".localized,
+                    message: "connection_error_message".localized
+                )
+                
+                print(error.localizedDescription)
+                return
+            }
+        }
+        
+        networkService.send(request: request, to: address) { success in
+            if !success {
+                self.currentIpIndex += 1
+                self.sendRegistrationRequest()
+            }
+        }
+    }
+    
 }
 
 // MARK: MainContract.Presenter
@@ -113,12 +165,25 @@ extension MainPresenter : MainContract.Presenter {
             name: .didReceiveCancelAlarmRequestResult,
             object: nil
         )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didReceiveInvalidTokenMessage(notification:)),
+            name: .didReceiveInvalidTokenMessage,
+            object: nil
+        )
     }
     
     func viewWillDisappear() {
         NotificationCenter.default.removeObserver(
             self,
             name: .didReceiveCancelAlarmRequestResult,
+            object: nil
+        )
+ 
+        NotificationCenter.default.removeObserver(
+            self,
+            name: .didReceiveInvalidTokenMessage,
             object: nil
         )
     }

@@ -27,11 +27,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             if
                 let company = cacheManager.getCompany(),
-                cacheManager.hasCountryCode && cacheManager.hasPhone && cacheManager.hasToken
+                let phone = cacheManager.getPhone(),
+                let password = cacheManager.getPassword(),
+                cacheManager.hasCountryCode && cacheManager.hasToken
             {
                 let mainViewController = Container.shared.resolve(
                     MainContract.View.self,
-                    arguments: company.ip, 0
+                    arguments: phone, password, company.ip, 0
                 )!
                 
                 window?.rootViewController = mainViewController

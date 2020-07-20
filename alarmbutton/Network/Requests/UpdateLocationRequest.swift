@@ -22,6 +22,10 @@ class UpdateLocationRequest : Request {
         self.speed = speed
     }
     
+    var type: RequestType {
+        return .updateLocation
+    }
+    
     func toString() -> String {
         return """
         {

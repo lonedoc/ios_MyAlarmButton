@@ -22,15 +22,14 @@ class NetworkServiceImpl : NetworkService {
         return NetworkServiceImpl()
     }()
 
+    private let cacheManager = UserDefaultsCacheManager() // TODO: Replace it with dependency injection
     private var socket: RubegSocket? = nil
     private var token: String? = nil
     
     private(set) var isStarted: Bool = false // TODO: Make it thread-safe
     
     func start() throws {
-        // TODO: Move it out here
-        token = UserDefaultsCacheManager().getToken()
-        
+        token = cacheManager.getToken()
         socket = try RubegSocket()
         socket?.delegate = self
         socket?.open()
@@ -48,15 +47,21 @@ class NetworkServiceImpl : NetworkService {
         print(request.toString())
         
         let host = Host(address.address, address.port)
-        socket?.send(message: request.toString(), token: token, to: host, completion: completion)
+        
+        socket?.send(
+            message: request.toString(),
+            token: request.type == .registration ? nil : token,
+            to: host,
+            completion: completion
+        )
     }
     
 }
 
 extension NetworkServiceImpl : RubegSocketDelegate {
     
+    // TODO: Extract the parsing logic to separate object
     func stringMessageReceived(_ message: String) {
-        // TODO: Extract the parsing logic to separate object
         print("Text message received: \(message)")
         
         let data = Data(message.utf8)
@@ -75,9 +80,7 @@ extension NetworkServiceImpl : RubegSocketDelegate {
             }
             
             token = tid
-            
-            // TODO: Move it out here
-            UserDefaults.standard.set(token, forKey: "token")
+            cacheManager.set(token: tid)
             
             NotificationCenter.default.post(name: .didReceiveRegistrationResult, object: nil)
         } else if command == "getpassword" {
@@ -105,15 +108,22 @@ extension NetworkServiceImpl : RubegSocketDelegate {
             }
             
             NotificationCenter.default.post(name: .didReceiveCancelAlarmRequestResult, object: result)
+        } else if command == "mobalarm" {
+            guard let resultText = jsonObject["result"] as? String else {
+                return
+            }
+            
+            if resultText == "tokennotreg" {
+                NotificationCenter.default.post(name: .didReceiveInvalidTokenMessage, object: nil)
+            }
         }
     }
     
-    func binaryMessageReceived(_ message: [Byte]) {
-        // TODO: Implement this
-    }
+    func binaryMessageReceived(_ message: [Byte]) {}
     
 }
 
+// {"$c$":"mobalarm","result":"tokennotreg"}
 // {"$c$":"regok","tid":"D68CB802-46B2-417C-A103-7A6146264781"}
 // {"$c$":"getpassword","result":"ok"}
 // {"$c$":"mobalarm","result":"ok","code":6397}

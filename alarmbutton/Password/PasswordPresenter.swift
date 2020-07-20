@@ -14,19 +14,20 @@ private let registrationRequestCode = 1
 class PasswordPresenter {
     
     private weak var view: PasswordContract.View? = nil
+    private let cacheManager: CacheManager
     private let networkService: NetworkService
     
     private var timer: Timer? = nil
     private var timeLeft: Int = 120
     
     private let ip: [String]
-    private let phone: String
-    
     private var currentIpIndex = 0 // TODO: Make it thread-safe
     
+    private let phone: String
     private var password: String? = nil
     
-    init(networkService: NetworkService, phone: String, ip: [String], currentIpIndex: Int = 0) {
+    init(cacheManager: CacheManager, networkService: NetworkService, phone: String, ip: [String], currentIpIndex: Int = 0) {
+        self.cacheManager = cacheManager
         self.networkService = networkService
         self.ip = ip
         self.phone = phone
@@ -46,7 +47,13 @@ class PasswordPresenter {
     }
     
     @objc func didReceiveRegistrationResult(_ notification: Notification) {
-        view?.openMainScreen(ip: ip, currentIpIndex: currentIpIndex)
+        guard let password = password else {
+            return
+        }
+        
+        cacheManager.set(password: password)
+        
+        view?.openMainScreen(phone: phone, password: password, ip: ip, currentIpIndex: currentIpIndex)
     }
     
     private func startTimer() {

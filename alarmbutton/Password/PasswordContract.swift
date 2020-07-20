@@ -13,7 +13,7 @@ protocol IPasswordView : UIViewController, AlertDialog {
     func updateTimer(text: String)
     func setProceedButtonEnabled(_ enabled: Bool)
     func showRetryDialog(code: Int)
-    func openMainScreen(ip: [String], currentIpIndex: Int)
+    func openMainScreen(phone: String, password: String, ip: [String], currentIpIndex: Int)
     func openLoginScreen()
 }
 

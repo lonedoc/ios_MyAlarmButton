@@ -16,6 +16,10 @@ class PasswordRequest : Request {
         self.phone = phone
     }
     
+    var type: RequestType {
+        return .password
+    }
+    
     func toString() -> String {
         return """
         {

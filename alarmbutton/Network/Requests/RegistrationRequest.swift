@@ -18,6 +18,10 @@ class RegistrationRequest : Request {
         self.password = password
     }
     
+    var type: RequestType {
+        return .registration
+    }
+    
     func toString() -> String {
         return """
         {

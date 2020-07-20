@@ -170,11 +170,11 @@ extension PasswordViewController : PasswordContract.View {
         }
     }
     
-    func openMainScreen(ip: [String], currentIpIndex: Int) {
+    func openMainScreen(phone: String, password: String, ip: [String], currentIpIndex: Int) {
         DispatchQueue.main.async {
             let mainViewController = Container.shared.resolve(
                 MainContract.View.self,
-                arguments: ip, 0
+                arguments: phone, password, ip, 0
             )!
             
             self.present(mainViewController, animated: true)

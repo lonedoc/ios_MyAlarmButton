@@ -9,5 +9,6 @@
 import Foundation
 
 protocol Request {
+    var type: RequestType { get }
     func toString() -> String
 }

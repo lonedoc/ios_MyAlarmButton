@@ -20,6 +20,10 @@ class CancelAlarmRequest : Request {
         self.longitude = longitude
     }
     
+    var type: RequestType {
+        return .cancelAlarm
+    }
+    
     func toString() -> String {
         return """
         {

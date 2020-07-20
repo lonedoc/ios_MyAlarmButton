@@ -20,6 +20,7 @@
 		5C1934CE249B6723007FB569 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1934CD249B6723007FB569 /* ArrayExtensions.swift */; };
 		5C1E3F0624B7508C002FABCF /* ContainerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E3F0524B7508C002FABCF /* ContainerExtensions.swift */; };
 		5C45181C24A9A00D007FF82A /* CancelAlarmRequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45181B24A9A00D007FF82A /* CancelAlarmRequestResult.swift */; };
+		5C89ED1324C5BA67003463D5 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89ED1224C5BA67003463D5 /* RequestType.swift */; };
 		5C8BA7A524A32CA200384C37 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BA7A424A32CA200384C37 /* NetworkService.swift */; };
 		5C8BA7A824A33EAE00384C37 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BA7A724A33EAD00384C37 /* Request.swift */; };
 		5C8BA7AA24A33FAA00384C37 /* PasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BA7A924A33FAA00384C37 /* PasswordRequest.swift */; };
@@ -78,6 +79,7 @@
 		5C1934CD249B6723007FB569 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		5C1E3F0524B7508C002FABCF /* ContainerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerExtensions.swift; sourceTree = "<group>"; };
 		5C45181B24A9A00D007FF82A /* CancelAlarmRequestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelAlarmRequestResult.swift; sourceTree = "<group>"; };
+		5C89ED1224C5BA67003463D5 /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
 		5C8BA7A424A32CA200384C37 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5C8BA7A724A33EAD00384C37 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		5C8BA7A924A33FAA00384C37 /* PasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRequest.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				5C8BA7AB24A46CFA00384C37 /* RegistrationRequest.swift */,
 				5C8BA7BA24A88DD400384C37 /* UpdateLocationRequest.swift */,
 				5C8BA7BC24A88F4700384C37 /* CancelAlarmRequest.swift */,
+				5C89ED1224C5BA67003463D5 /* RequestType.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 				5CEE1090249293F200EF8095 /* LoginContract.swift in Sources */,
 				5C8BA7B924A7A0EB00384C37 /* LocationService.swift in Sources */,
 				5C1934C72499D716007FB569 /* Company.swift in Sources */,
+				5C89ED1324C5BA67003463D5 /* RequestType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
