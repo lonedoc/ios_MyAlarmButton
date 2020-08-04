@@ -231,6 +231,7 @@ class LoginPresenter {
         
         networkService.send(request: request, to: address) { success in
             if !success {
+                self.currentIpIndex += 1
                 self.view?.showRetryDialog()
             }
         }
@@ -354,12 +355,10 @@ extension LoginPresenter : LoginContract.Presenter {
     
     func didHitSubmitButton() {
         saveDataInCache()
-
         sendPasswordRequest()
     }
     
     func didHitRetryButton() {
-        currentIpIndex += 1
         sendPasswordRequest()
     }
     

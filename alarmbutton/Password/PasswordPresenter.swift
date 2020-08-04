@@ -164,6 +164,7 @@ class PasswordPresenter {
         
         networkService.send(request: request, to: address) { success in
             if !success {
+                self.currentIpIndex += 1
                 self.view?.showRetryDialog(code: registrationRequestCode)
             }
         }
@@ -235,8 +236,6 @@ extension PasswordPresenter : PasswordContract.Presenter {
     }
     
     func didHitRetryButton(code: Int) {
-        currentIpIndex += 1
-        
         if code == passwordRequestCode {
             sendPasswordRequest()
         } else if code == registrationRequestCode {
