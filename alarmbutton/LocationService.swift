@@ -117,6 +117,10 @@ extension LocationServiceImpl : LocationService {
     
     func stopLocationSharing() {
         locationManager.stopUpdatingLocation()
+        
+        if networkService.isStarted {
+            networkService.stop()
+        }
     }
     
 }

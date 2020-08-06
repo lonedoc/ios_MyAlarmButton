@@ -53,12 +53,23 @@ class PasswordPresenter {
         
         cacheManager.set(password: password)
         
+        if networkService.isStarted {
+            networkService.stop()
+        }
+        
         view?.openMainScreen(phone: phone, password: password, ip: ip, currentIpIndex: currentIpIndex)
     }
     
     private func startTimer() {
         timeLeft = 120
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        
+        timer = Timer.scheduledTimer(
+            timeInterval: 1,
+            target: self,
+            selector: #selector(updateTimer),
+            userInfo: nil,
+            repeats: true
+        )
     }
     
     @objc func updateTimer() {

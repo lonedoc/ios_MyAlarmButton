@@ -57,6 +57,10 @@ class LoginPresenter {
                 return
             }
             
+            if networkService.isStarted {
+                networkService.stop()
+            }
+            
             view?.openPasswordScreen(phone: extractDigits(text: phone), ip: company.ip, currentIpIndex: currentIpIndex)
         } else {
             // TODO: Notify user
@@ -161,6 +165,9 @@ class LoginPresenter {
                 let companyIndex = (companiesInCity.firstIndex { c in c == company.name })
             {
                 view?.selectCompanyPickerRow(companyIndex)
+                
+                // Update ip list
+                selectedCompany = companies.first { $0.city == city && $0.name == company.name }
             } else {
                 selectedCompany = nil
                 view?.setCompany("")
