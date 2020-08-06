@@ -37,8 +37,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             )!
             
             window?.rootViewController = mainViewController
-            window?.makeKeyAndVisible()
             window?.windowScene = windowScene
+            window?.makeKeyAndVisible()
         } else {
             let loginViewController = Container.shared.resolve(LoginContract.View.self)!
             
@@ -46,8 +46,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 NavigationController(rootViewController: loginViewController)
             
             window?.rootViewController = navigationController
-            window?.makeKeyAndVisible()
             window?.windowScene = windowScene
+            window?.makeKeyAndVisible()
         }
     }
 
