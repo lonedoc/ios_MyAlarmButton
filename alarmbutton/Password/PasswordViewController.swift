@@ -18,7 +18,7 @@ class PasswordViewController : UIViewController {
         self.presenter = presenter
         
         super.init(nibName: nil, bundle: nil)
-        self.title = "registration".localized
+        self.title = "authentication".localized
         self.modalPresentationStyle = .fullScreen
     }
     
