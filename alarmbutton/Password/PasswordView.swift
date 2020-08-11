@@ -129,6 +129,11 @@ class PasswordView: UIView {
         textField.borderStyle = .roundedRect
         textField.textColor = .defaultTextColor
         textField.placeholder = "password".localized
+        
+        if #available(iOS 12.0, *) {
+            textField.textContentType = .oneTimeCode
+        }
+        
         return textField
     }()
     
