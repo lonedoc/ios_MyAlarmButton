@@ -24,6 +24,7 @@ protocol CacheManager {
     func getPhone() -> String?
     func getToken() -> String?
     func getPassword() -> String?
+    func clearCache()
 }
 
 class UserDefaultsCacheManager : CacheManager {
@@ -114,6 +115,18 @@ class UserDefaultsCacheManager : CacheManager {
     
     func getPassword() -> String? {
         return UserDefaults.standard.string(forKey: keys.password)
+    }
+    
+    func clearCache() {
+        let userDefaults = UserDefaults.standard
+        
+        userDefaults.removeObject(forKey: keys.city)
+        userDefaults.removeObject(forKey: keys.company)
+        userDefaults.removeObject(forKey: keys.ip)
+        userDefaults.removeObject(forKey: keys.countryCode)
+        userDefaults.removeObject(forKey: keys.phone)
+        userDefaults.removeObject(forKey: keys.token)
+        userDefaults.removeObject(forKey: keys.password)
     }
     
 }

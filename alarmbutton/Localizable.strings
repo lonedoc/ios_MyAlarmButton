@@ -6,6 +6,10 @@
   Copyright © 2020 Rubeg NPO. All rights reserved.
 */
 
+"to_exit" = "Выйти";
+"confirmation" = "Подтверждение";
+"confirm_exit_message" = "Вы действительно хотите выйти?";
+"exit" = "Выход";
 "authentication" = "Аутентификация";
 "registration" = "Регистрация";
 "pick_city" = "Выберите город:";

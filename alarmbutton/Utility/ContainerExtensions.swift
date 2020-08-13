@@ -76,8 +76,10 @@ extension Container {
             { resolver, phone, password, ip, initialIpIndex in
                 let networkService = resolver.resolve(NetworkService.self)!
                 let locationService = resolver.resolve(LocationService.self)!
+                let cacheManager = resolver.resolve(CacheManager.self)!
                 
                 return MainPresenter(
+                    cacheManager: cacheManager,
                     networkService: networkService,
                     locationService: locationService,
                     phone: phone,

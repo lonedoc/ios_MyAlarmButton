@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Swinject
 
 class MainViewController : UIViewController {
     
@@ -49,6 +50,7 @@ class MainViewController : UIViewController {
     private func configureControls() {
         rootView.alarmButton.addTarget(self, action: #selector(didHitAlarmButton), for: .touchUpInside)
         rootView.cancelButton.addTarget(self, action: #selector(didHitCancelButton), for: .touchUpInside)
+        rootView.exitButton.addTarget(self, action: #selector(didHitExitButton), for: .touchUpInside)
     }
     
     @objc func didHitAlarmButton() {
@@ -57,6 +59,10 @@ class MainViewController : UIViewController {
     
     @objc func didHitCancelButton() {
         presenter.didHitCancelButton()
+    }
+    
+    @objc func didHitExitButton() {
+        presenter.didHitExitButton()
     }
 }
 
@@ -67,12 +73,20 @@ extension MainViewController : MainContract.View {
     func setAlarmButtonHidden(_ value: Bool) {
         DispatchQueue.main.async {
             self.rootView.alarmButton.isHidden = value
+            
+            if !value {
+                self.rootView.exitButton.setBackgroundColor(.errorColorDark, for: .normal)
+            }
         }
     }
     
     func setCancelButtonHidden(_ value: Bool) {
         DispatchQueue.main.async {
             self.rootView.cancelButton.isHidden = value
+            
+            if !value {
+                self.rootView.exitButton.setBackgroundColor(.secondaryColorDark, for: .normal)
+            }
         }
     }
     
@@ -101,6 +115,36 @@ extension MainViewController : MainContract.View {
         
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func showConfirmationPrompt() {
+        let alert = UIAlertController(
+            title: "confirmation".localized,
+            message: "confirm_exit_message".localized,
+            preferredStyle: .alert
+        )
+        
+        let cancelAction = UIAlertAction(title: "cancel".localized, style: .default, handler: nil)
+        
+        let proceedAction = UIAlertAction(title: "to_exit".localized, style: .default) { _ in
+            self.presenter.didProvideConfirmation()
+        }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(proceedAction)
+        
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func openLoginScreen() {
+        let loginViewController = Container.shared.resolve(LoginContract.View.self)!
+        let navigationController = NavigationController(rootViewController: loginViewController)
+        
+        DispatchQueue.main.async {
+            self.present(navigationController, animated: true)
         }
     }
     

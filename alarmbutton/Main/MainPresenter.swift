@@ -11,6 +11,7 @@ import Foundation
 class MainPresenter {
     
     private weak var view: MainContract.View? = nil
+    private let cacheManager: CacheManager
     private let networkService: NetworkService
     private let locationService: LocationService
     
@@ -20,7 +21,10 @@ class MainPresenter {
     private let phone: String
     private let password: String
     
-    init(networkService: NetworkService, locationService: LocationService, phone: String, password: String, ip: [String], currentIpIndex: Int = 0) {
+    private var isAlarmActive: Bool = false
+    
+    init(cacheManager: CacheManager, networkService: NetworkService, locationService: LocationService, phone: String, password: String, ip: [String], currentIpIndex: Int = 0) {
+        self.cacheManager = cacheManager
         self.networkService = networkService
         self.locationService = locationService
         self.phone = phone
@@ -205,8 +209,19 @@ extension MainPresenter : MainContract.Presenter {
         view?.showSecurityCodePrompt()
     }
     
+    func didHitExitButton() {
+        view?.showConfirmationPrompt()
+    }
+    
     func didProvideSecurityCode(_ value: String) {
         sendCancelAlarmRequest(code: value)
+    }
+    
+    func didProvideConfirmation() {
+        cacheManager.clearCache()
+        locationService.stopLocationSharing()
+        
+        view?.openLoginScreen()
     }
     
 }

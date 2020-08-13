@@ -13,6 +13,8 @@ protocol IMainView : UIViewController, AlertDialog {
     func setAlarmButtonHidden(_ value: Bool)
     func setCancelButtonHidden(_ value: Bool)
     func showSecurityCodePrompt()
+    func showConfirmationPrompt()
+    func openLoginScreen()
 }
 
 protocol IMainPresenter {
@@ -21,6 +23,8 @@ protocol IMainPresenter {
     func viewWillDisappear()
     func didHitAlarmButton()
     func didHitCancelButton()
+    func didHitExitButton()
+    func didProvideConfirmation()
     func didProvideSecurityCode(_ value: String)
 }
 

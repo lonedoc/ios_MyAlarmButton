@@ -10,6 +10,15 @@ import UIKit
 
 class NavigationController : UINavigationController {
     
+    override init(rootViewController: UIViewController) {
+        super.init(rootViewController: rootViewController)
+        self.modalPresentationStyle = .fullScreen
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         navigationBar.barTintColor = UIColor.primaryColor
         navigationBar.isTranslucent = false
