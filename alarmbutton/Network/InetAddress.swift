@@ -26,13 +26,18 @@ class InetAddress {
     }
     
     private static func validate(address: String) throws {
-        // TODO: validate address value
-//        throw fatalError("not yet implemented")
+        let regex = "((1\\d{1,2}|25[0-5]|2[0-4]\\d|\\d{1,2})\\.){3}(1\\d{1,2}|25[0-5]|2[0-4]\\d|\\d{1,2})"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+
+        if !predicate.evaluate(with: address) {
+            throw fatalError("Invalid IPv4 address")
+        }
     }
     
     private static func validate(port: Int32) throws {
-        // TODO: validate port value
-//        throw fatalError("not yet implemented")
+        if port < 0 || port > 65535 {
+            throw fatalError("Invalid port")
+        }
     }
     
 }

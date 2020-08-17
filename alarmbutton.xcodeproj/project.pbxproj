@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2CC63935E60B2402CE8FCB59 /* Pods_alarmbuttonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DE44F6EF60995347E300424 /* Pods_alarmbuttonTests.framework */; };
 		5C0B2056248661990056CB06 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B2055248661990056CB06 /* UIColorExtensions.swift */; };
 		5C0B20582488C2DE0056CB06 /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B20572488C2DE0056CB06 /* UIButtonExtensions.swift */; };
 		5C1934BD2498DABB007FB569 /* Coder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1934BC2498DABB007FB569 /* Coder.swift */; };
@@ -37,11 +36,11 @@
 		5CA2E399247B96F700D912EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2E398247B96F700D912EA /* SceneDelegate.swift */; };
 		5CA2E3A0247B96F800D912EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5CA2E39F247B96F800D912EA /* Assets.xcassets */; };
 		5CA2E3A3247B96F800D912EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CA2E3A1247B96F800D912EA /* LaunchScreen.storyboard */; };
-		5CA2E3AE247B96F800D912EA /* alarmbuttonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2E3AD247B96F800D912EA /* alarmbuttonTests.swift */; };
 		5CA2E3B92484C5D200D912EA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2E3B82484C5D200D912EA /* LoginView.swift */; };
 		5CA2E3BC2484C5FD00D912EA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2E3BB2484C5FD00D912EA /* LoginViewController.swift */; };
 		5CA2E3BE2484F79A00D912EA /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2E3BD2484F79A00D912EA /* StringExtensions.swift */; };
 		5CA2E3C02484F90700D912EA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5CA2E3BF2484F90700D912EA /* Localizable.strings */; };
+		5CAF26CF24E6953A00882339 /* alarmbuttonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF26CE24E6953A00882339 /* alarmbuttonTests.swift */; };
 		5CC6227A24AE048000FF5964 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6227924AE048000FF5964 /* CacheManager.swift */; };
 		5CEE108E2492316900EF8095 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEE108D2492316900EF8095 /* LoginPresenter.swift */; };
 		5CEE1090249293F200EF8095 /* LoginContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEE108F249293F200EF8095 /* LoginContract.swift */; };
@@ -56,7 +55,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5CA2E3AA247B96F800D912EA /* PBXContainerItemProxy */ = {
+		5CAF26C924E694E000882339 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5CA2E38B247B96F700D912EA /* Project object */;
 			proxyType = 1;
@@ -98,13 +97,13 @@
 		5CA2E39F247B96F800D912EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5CA2E3A2247B96F800D912EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5CA2E3A4247B96F800D912EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5CA2E3A9247B96F800D912EA /* alarmbuttonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = alarmbuttonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5CA2E3AD247B96F800D912EA /* alarmbuttonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alarmbuttonTests.swift; sourceTree = "<group>"; };
-		5CA2E3AF247B96F800D912EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5CA2E3B82484C5D200D912EA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5CA2E3BB2484C5FD00D912EA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5CA2E3BD2484F79A00D912EA /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		5CA2E3BF2484F90700D912EA /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		5CAF26C424E694E000882339 /* alarmbuttonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = alarmbuttonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CAF26C824E694E000882339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5CAF26CE24E6953A00882339 /* alarmbuttonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alarmbuttonTests.swift; sourceTree = "<group>"; };
 		5CC6227924AE048000FF5964 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		5CEE108D2492316900EF8095 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		5CEE108F249293F200EF8095 /* LoginContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContract.swift; sourceTree = "<group>"; };
@@ -132,11 +131,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5CA2E3A6247B96F800D912EA /* Frameworks */ = {
+		5CAF26C124E694E000882339 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CC63935E60B2402CE8FCB59 /* Pods_alarmbuttonTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,7 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				5CA2E395247B96F700D912EA /* alarmbutton */,
-				5CA2E3AC247B96F800D912EA /* alarmbuttonTests */,
+				5CAF26C524E694E000882339 /* alarmbuttonTests */,
 				5CA2E394247B96F700D912EA /* Products */,
 				DA24A36702B17A3E770990AB /* Pods */,
 				93B2CF32AFB38464CFED40A1 /* Frameworks */,
@@ -222,7 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				5CA2E393247B96F700D912EA /* Тревожная Кнопка.app */,
-				5CA2E3A9247B96F800D912EA /* alarmbuttonTests.xctest */,
+				5CAF26C424E694E000882339 /* alarmbuttonTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -250,15 +248,6 @@
 			path = alarmbutton;
 			sourceTree = "<group>";
 		};
-		5CA2E3AC247B96F800D912EA /* alarmbuttonTests */ = {
-			isa = PBXGroup;
-			children = (
-				5CA2E3AD247B96F800D912EA /* alarmbuttonTests.swift */,
-				5CA2E3AF247B96F800D912EA /* Info.plist */,
-			);
-			path = alarmbuttonTests;
-			sourceTree = "<group>";
-		};
 		5CA2E3BA2484C5D800D912EA /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,6 +257,15 @@
 				5CEE108F249293F200EF8095 /* LoginContract.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		5CAF26C524E694E000882339 /* alarmbuttonTests */ = {
+			isa = PBXGroup;
+			children = (
+				5CAF26CE24E6953A00882339 /* alarmbuttonTests.swift */,
+				5CAF26C824E694E000882339 /* Info.plist */,
+			);
+			path = alarmbuttonTests;
 			sourceTree = "<group>";
 		};
 		5CEE10952498AC7800EF8095 /* Network */ = {
@@ -337,23 +335,22 @@
 			productReference = 5CA2E393247B96F700D912EA /* Тревожная Кнопка.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5CA2E3A8247B96F800D912EA /* alarmbuttonTests */ = {
+		5CAF26C324E694E000882339 /* alarmbuttonTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5CA2E3B5247B96F800D912EA /* Build configuration list for PBXNativeTarget "alarmbuttonTests" */;
+			buildConfigurationList = 5CAF26CB24E694E000882339 /* Build configuration list for PBXNativeTarget "alarmbuttonTests" */;
 			buildPhases = (
-				39D6D711AE3F8728B5B8889B /* [CP] Check Pods Manifest.lock */,
-				5CA2E3A5247B96F800D912EA /* Sources */,
-				5CA2E3A6247B96F800D912EA /* Frameworks */,
-				5CA2E3A7247B96F800D912EA /* Resources */,
+				5CAF26C024E694E000882339 /* Sources */,
+				5CAF26C124E694E000882339 /* Frameworks */,
+				5CAF26C224E694E000882339 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				5CA2E3AB247B96F800D912EA /* PBXTargetDependency */,
+				5CAF26CA24E694E000882339 /* PBXTargetDependency */,
 			);
 			name = alarmbuttonTests;
 			productName = alarmbuttonTests;
-			productReference = 5CA2E3A9247B96F800D912EA /* alarmbuttonTests.xctest */;
+			productReference = 5CAF26C424E694E000882339 /* alarmbuttonTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -362,15 +359,15 @@
 		5CA2E38B247B96F700D912EA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1160;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Rubeg NPO";
 				TargetAttributes = {
 					5CA2E392247B96F700D912EA = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
-					5CA2E3A8247B96F800D912EA = {
-						CreatedOnToolsVersion = 11.3.1;
+					5CAF26C324E694E000882339 = {
+						CreatedOnToolsVersion = 11.6;
 						TestTargetID = 5CA2E392247B96F700D912EA;
 					};
 				};
@@ -390,7 +387,7 @@
 			projectRoot = "";
 			targets = (
 				5CA2E392247B96F700D912EA /* alarmbutton */,
-				5CA2E3A8247B96F800D912EA /* alarmbuttonTests */,
+				5CAF26C324E694E000882339 /* alarmbuttonTests */,
 			);
 		};
 /* End PBXProject section */
@@ -406,7 +403,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5CA2E3A7247B96F800D912EA /* Resources */ = {
+		5CAF26C224E694E000882339 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -431,28 +428,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-alarmbutton/Pods-alarmbutton-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		39D6D711AE3F8728B5B8889B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-alarmbuttonTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A668B78B655B7EA3C87B3051 /* [CP] Check Pods Manifest.lock */ = {
@@ -527,21 +502,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5CA2E3A5247B96F800D912EA /* Sources */ = {
+		5CAF26C024E694E000882339 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CA2E3AE247B96F800D912EA /* alarmbuttonTests.swift in Sources */,
+				5CAF26CF24E6953A00882339 /* alarmbuttonTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5CA2E3AB247B96F800D912EA /* PBXTargetDependency */ = {
+		5CAF26CA24E694E000882339 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5CA2E392247B96F700D912EA /* alarmbutton */;
-			targetProxy = 5CA2E3AA247B96F800D912EA /* PBXContainerItemProxy */;
+			targetProxy = 5CAF26C924E694E000882339 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -681,7 +656,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = TZX223S8SD;
 				INFOPLIST_FILE = alarmbutton/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -689,8 +664,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.rubeg38.alarmbutton;
+				PRODUCT_MODULE_NAME = alarmbutton;
 				PRODUCT_NAME = "Тревожная Кнопка";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -705,7 +681,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = TZX223S8SD;
 				INFOPLIST_FILE = alarmbutton/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -713,8 +689,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.rubeg38.alarmbutton;
+				PRODUCT_MODULE_NAME = alarmbutton;
 				PRODUCT_NAME = "Тревожная Кнопка";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -722,16 +699,14 @@
 			};
 			name = Release;
 		};
-		5CA2E3B6247B96F800D912EA /* Debug */ = {
+		5CAF26CC24E694E000882339 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 40BDD0A6B20C14EBD3B63285 /* Pods-alarmbuttonTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TZX223S8SD;
 				INFOPLIST_FILE = alarmbuttonTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -741,20 +716,18 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/alarmbutton.app/alarmbutton";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Тревожная Кнопка.app/Тревожная Кнопка";
 			};
 			name = Debug;
 		};
-		5CA2E3B7247B96F800D912EA /* Release */ = {
+		5CAF26CD24E694E000882339 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D9C978D8EBF4A0688EEA10A8 /* Pods-alarmbuttonTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TZX223S8SD;
 				INFOPLIST_FILE = alarmbuttonTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -764,7 +737,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/alarmbutton.app/alarmbutton";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Тревожная Кнопка.app/Тревожная Кнопка";
 			};
 			name = Release;
 		};
@@ -789,11 +762,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5CA2E3B5247B96F800D912EA /* Build configuration list for PBXNativeTarget "alarmbuttonTests" */ = {
+		5CAF26CB24E694E000882339 /* Build configuration list for PBXNativeTarget "alarmbuttonTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5CA2E3B6247B96F800D912EA /* Debug */,
-				5CA2E3B7247B96F800D912EA /* Release */,
+				5CAF26CC24E694E000882339 /* Debug */,
+				5CAF26CD24E694E000882339 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
