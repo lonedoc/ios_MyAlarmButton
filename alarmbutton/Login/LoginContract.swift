@@ -22,7 +22,7 @@ protocol ILoginView: UIViewController, AlertDialog {
     func setPhoneNumber(_ value: String)
     func setSubmitButtonEnabled(_ enabled: Bool)
     func showRetryDialog()
-    func openPasswordScreen(phone: String, ip: [String], currentIpIndex: Int)
+    func openPasswordScreen(phone: String, ipAddresses: [String], currentIpIndex: Int)
 }
 
 protocol ILoginPresenter {

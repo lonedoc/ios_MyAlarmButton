@@ -8,20 +8,20 @@
 
 import Foundation
 
-class RegistrationRequest : Request {
-    
+class RegistrationRequest: Request {
+
     private let phone: String
     private let password: String
-    
+
     init(phone: String, password: String) {
         self.phone = phone
         self.password = password
     }
-    
+
     var type: RequestType {
         return .registration
     }
-    
+
     func toString() -> String {
         return """
         {
@@ -35,5 +35,5 @@ class RegistrationRequest : Request {
         }
         """
     }
-    
+
 }

@@ -9,17 +9,17 @@
 import Foundation
 
 extension Array {
-    
+
     func distinct(comparator: (Element, Element) -> Bool) -> [Element] {
         var distinctValues = [Element]()
-        
+
         self.forEach { item in
             if !(distinctValues.contains { comparator($0, item) }) {
                 distinctValues.append(item)
             }
         }
-        
+
         return distinctValues
     }
-    
+
 }

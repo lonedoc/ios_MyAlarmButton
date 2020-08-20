@@ -15,16 +15,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     var locationService: LocationService!
 
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    func scene(
+        _ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions
+    ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
+
         window = UIWindow(frame: UIScreen.main.bounds)
-        
+
         locationService = Container.shared.resolve(LocationService.self)!
         locationService.requestAuthorization()
-        
+
         let cacheManager = Container.shared.resolve(CacheManager.self)!
-        
+
         if
             let company = cacheManager.getCompany(),
             let phone = cacheManager.getPhone(),
@@ -33,18 +35,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         {
             let mainViewController = Container.shared.resolve(
                 MainContract.View.self,
-                arguments: phone, password, company.ip, 0
+                arguments: phone, password, company.ipAddresses, 0
             )!
-            
+
             window?.rootViewController = mainViewController
             window?.windowScene = windowScene
             window?.makeKeyAndVisible()
         } else {
             let loginViewController = Container.shared.resolve(LoginContract.View.self)!
-            
+
             let navigationController =
                 NavigationController(rootViewController: loginViewController)
-            
+
             window?.rootViewController = navigationController
             window?.windowScene = windowScene
             window?.makeKeyAndVisible()

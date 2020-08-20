@@ -8,22 +8,22 @@
 
 import Foundation
 
-class CancelAlarmRequest : Request {
-    
+class CancelAlarmRequest: Request {
+
     private let code: String
     private let latitude: Double
     private let longitude: Double
-    
+
     init(code: String, latitude: Double, longitude: Double) {
         self.code = code
         self.latitude = latitude
         self.longitude = longitude
     }
-    
+
     var type: RequestType {
         return .cancelAlarm
     }
-    
+
     func toString() -> String {
         return """
         {
@@ -35,5 +35,5 @@ class CancelAlarmRequest : Request {
         }
         """
     }
-    
+
 }

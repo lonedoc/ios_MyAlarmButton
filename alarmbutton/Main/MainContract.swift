@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-protocol IMainView : UIViewController, AlertDialog {
+protocol IMainView: UIViewController, AlertDialog {
     func setAlarmButtonHidden(_ value: Bool)
     func setCancelButtonHidden(_ value: Bool)
     func showSecurityCodePrompt()

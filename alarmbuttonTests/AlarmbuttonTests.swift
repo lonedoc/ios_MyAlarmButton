@@ -9,7 +9,6 @@
 import XCTest
 @testable import alarmbutton
 
+class AlarmbuttonTests: XCTestCase {
 
-class alarmbuttonTests: XCTestCase {
-    
 }

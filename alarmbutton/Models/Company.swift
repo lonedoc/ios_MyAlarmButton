@@ -9,15 +9,15 @@
 import Foundation
 
 class Company {
-    
+
     let city: String
     let name: String
-    let ip: [String]
-    
-    init(city: String, name: String, ip: [String]) {
+    let ipAddresses: [String]
+
+    init(city: String, name: String, ipAddresses: [String]) {
         self.city = city
         self.name = name
-        self.ip = ip
+        self.ipAddresses = ipAddresses
     }
-    
+
 }

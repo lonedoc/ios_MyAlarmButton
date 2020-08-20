@@ -8,24 +8,24 @@
 
 import Foundation
 
-class UpdateLocationRequest : Request {
-    
+class UpdateLocationRequest: Request {
+
     private let latitude: Double
     private let longitude: Double
     private let accuracy: Double
     private let speed: Double
-    
+
     init(latitude: Double, longitude: Double, accuracy: Double, speed: Double) {
         self.latitude = latitude
         self.longitude = longitude
         self.accuracy = accuracy
         self.speed = speed
     }
-    
+
     var type: RequestType {
         return .updateLocation
     }
-    
+
     func toString() -> String {
         return """
         {
@@ -38,5 +38,5 @@ class UpdateLocationRequest : Request {
         }
         """
     }
-    
+
 }

@@ -8,25 +8,25 @@
 
 import UIKit
 
-class LoginView : UIView {
- 
+class LoginView: UIView {
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         setup()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-     
+
     private func setup() {
         backgroundColor = .defaultBackgroundColor
-        
+
         setupViews()
         setupConstraints()
     }
-    
+
     private func setupViews() {
         contentView.addSubview(cityLabel)
         contentView.addSubview(cityTextField)
@@ -36,31 +36,32 @@ class LoginView : UIView {
         contentView.addSubview(countryCodeTextField)
         contentView.addSubview(phoneTextField)
         contentView.addSubview(submitButton)
-        
+
         wrapperView.addSubview(contentView)
         scrollView.addSubview(wrapperView)
-        
+
         addSubview(scrollView)
-        
+
         toolbar.setItems([prevButtonItem, gap, nextButtonItem, spacer, doneButtonItem], animated: false)
-        
+
         cityTextField.inputView = cityPicker
         companyTextField.inputView = companyPicker
         countryCodeTextField.inputView = countryCodePicker
-        
+
         cityTextField.inputAccessoryView = toolbar
         companyTextField.inputAccessoryView = toolbar
         countryCodeTextField.inputAccessoryView = toolbar
         phoneTextField.inputAccessoryView = toolbar
     }
-    
+
+    // swiftlint:disable:next function_body_length
     private func setupConstraints() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
         scrollView.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor).isActive = true
         scrollView.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
-        
+
         wrapperView.translatesAutoresizingMaskIntoConstraints = false
         wrapperView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         wrapperView.leftAnchor.constraint(equalTo: scrollView.leftAnchor).isActive = true
@@ -68,13 +69,13 @@ class LoginView : UIView {
         wrapperView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         wrapperView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
         wrapperView.heightAnchor.constraint(equalTo: scrollView.heightAnchor).isActive = true
-        
+
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.leftAnchor.constraint(equalTo: wrapperView.leftAnchor, constant: 16).isActive = true
         contentView.rightAnchor.constraint(equalTo: wrapperView.rightAnchor, constant: -16).isActive = true
         contentView.heightAnchor.constraint(equalToConstant: 330).isActive = true
         contentView.centerYAnchor.constraint(equalTo: wrapperView.centerYAnchor).isActive = true
-        
+
         cityLabel.translatesAutoresizingMaskIntoConstraints = false
         cityLabel.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         cityLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
@@ -99,7 +100,7 @@ class LoginView : UIView {
         phoneLabel.topAnchor.constraint(equalTo: companyTextField.bottomAnchor, constant: 16).isActive = true
         phoneLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
         phoneLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
-        
+
         countryCodeTextField.translatesAutoresizingMaskIntoConstraints = false
         countryCodeTextField.topAnchor.constraint(equalTo: phoneLabel.bottomAnchor, constant: 8).isActive = true
         countryCodeTextField.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
@@ -114,31 +115,31 @@ class LoginView : UIView {
         submitButton.topAnchor.constraint(equalTo: phoneTextField.bottomAnchor, constant: 64).isActive = true
         submitButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
     }
-    
+
     // MARK: Views
-    
+
     let scrollView: UIScrollView = {
         var view = UIScrollView(frame: .zero)
         return view
     }()
-    
+
     let wrapperView: UIView = {
         var view = UIView(frame: .zero)
         return view
     }()
-    
+
     let contentView: UIView = {
         var view = UIView(frame: .zero)
         return view
     }()
-    
+
     let cityLabel: UILabel = {
         var label = UILabel(frame: .zero)
         label.textColor = .contrastTextColor
         label.text = "pick_city".localized
         return label
     }()
-    
+
     let cityTextField: UITextField = {
         var textField = UITextField(frame: .zero)
         textField.backgroundColor = .contrastBackgroundColor
@@ -146,14 +147,14 @@ class LoginView : UIView {
         textField.textColor = .defaultTextColor
         return textField
     }()
-    
+
     let companyLabel: UILabel = {
         var label = UILabel(frame: .zero)
         label.textColor = .contrastTextColor
         label.text = "pick_company".localized
         return label
     }()
-    
+
     let companyTextField: UITextField = {
         var textField = UITextField(frame: .zero)
         textField.backgroundColor = .contrastBackgroundColor
@@ -161,14 +162,14 @@ class LoginView : UIView {
         textField.textColor = .defaultTextColor
         return textField
     }()
-    
+
     let phoneLabel: UILabel = {
         var label = UILabel(frame: .zero)
         label.textColor = .contrastTextColor
         label.text = "enter_phone_number".localized
         return label
     }()
-    
+
     let countryCodeTextField: UITextField = {
         var textField = UITextField(frame: .zero)
         textField.backgroundColor = .contrastBackgroundColor
@@ -176,7 +177,7 @@ class LoginView : UIView {
         textField.textColor = .defaultTextColor
         return textField
     }()
-    
+
     let phoneTextField: UITextField = {
         var textField = UITextField(frame: .zero)
         textField.backgroundColor = .contrastBackgroundColor
@@ -185,7 +186,7 @@ class LoginView : UIView {
         textField.keyboardType = .phonePad
         return textField
     }()
-    
+
     let submitButton: UIButton = {
         var button = UIButton(frame: .zero)
         button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
@@ -198,22 +199,22 @@ class LoginView : UIView {
         button.isEnabled = false
         return button
     }()
-    
+
     let cityPicker: UIPickerView = {
         var picker = UIPickerView(frame: .zero)
         return picker
     }()
-    
+
     let companyPicker: UIPickerView = {
         var picker = UIPickerView(frame: .zero)
         return picker
     }()
-    
+
     let countryCodePicker: UIPickerView = {
         var picker = UIPickerView(frame: .zero)
         return picker
     }()
-    
+
     let prevButtonItem: UIBarButtonItem = {
         var item = UIBarButtonItem(
             image: UIImage(named: "left_angle_arrow"),
@@ -223,7 +224,7 @@ class LoginView : UIView {
         )
         return item
     }()
-    
+
     let nextButtonItem: UIBarButtonItem = {
         var item = UIBarButtonItem(
             image: UIImage(named: "right_angle_arrow"),
@@ -233,7 +234,7 @@ class LoginView : UIView {
         )
         return item
     }()
-    
+
     let doneButtonItem: UIBarButtonItem = {
         var item = UIBarButtonItem(
             title: "done".localized,
@@ -243,7 +244,7 @@ class LoginView : UIView {
         )
         return item
     }()
-    
+
     let spacer: UIBarButtonItem = {
         var item = UIBarButtonItem(
             barButtonSystemItem: .flexibleSpace,
@@ -252,7 +253,7 @@ class LoginView : UIView {
         )
         return item
     }()
-    
+
     let gap: UIBarButtonItem = {
         let item = UIBarButtonItem(
             barButtonSystemItem: .fixedSpace,
@@ -262,7 +263,7 @@ class LoginView : UIView {
         item.width = 15
         return item
     }()
-    
+
     let toolbar: UIToolbar = {
         var toolbar = UIToolbar()
         toolbar.barStyle = .default
@@ -271,5 +272,5 @@ class LoginView : UIView {
         toolbar.sizeToFit()
         return toolbar
     }()
-    
+
 }

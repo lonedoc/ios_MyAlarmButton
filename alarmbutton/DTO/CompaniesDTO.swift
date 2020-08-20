@@ -8,40 +8,40 @@
 
 import Foundation
 
-struct CompanyDTO : Decodable {
-    
+struct CompanyDTO: Decodable {
+
     let name: String
-    let ip: [String]
-    
-    enum CodingKeys : String, CodingKey {
+    let ipAddresses: [String]
+
+    enum CodingKeys: String, CodingKey {
         case name = "name"
-        case ip = "ip"
+        case ipAddresses = "ip"
     }
-    
+
 }
 
-struct CityDTO : Decodable {
-    
+struct CityDTO: Decodable {
+
     let name: String
     let companies: [CompanyDTO]
-    
-    enum CodingKeys : String, CodingKey {
+
+    enum CodingKeys: String, CodingKey {
         case name = "name"
         case companies = "pr"
     }
-    
+
 }
 
-struct CompaniesDTO : Decodable {
-    
+struct CompaniesDTO: Decodable {
+
     let data: [CityDTO]
-    
-    enum CodingKeys : String, CodingKey {
+
+    enum CodingKeys: String, CodingKey {
         case data = "city"
     }
-    
+
     static func parse(json: String) throws -> CompaniesDTO {
         return try JSONDecoder().decode(CompaniesDTO.self, from: json.data(using: .utf8)!)
     }
-    
+
 }

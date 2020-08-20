@@ -27,7 +27,7 @@ protocol CacheManager {
     func clearCache()
 }
 
-class UserDefaultsCacheManager : CacheManager {
+class UserDefaultsCacheManager: CacheManager {
     private let keys = (
         city: "city",
         company: "company",
@@ -37,89 +37,83 @@ class UserDefaultsCacheManager : CacheManager {
         token: "token",
         password: "password"
     )
-    
+
     var hasCompany: Bool {
-        get {
-            guard
-                let _ = UserDefaults.standard.string(forKey: keys.city),
-                let _ = UserDefaults.standard.string(forKey: keys.company),
-                let _ = UserDefaults.standard.stringArray(forKey: keys.ip)
-            else {
-                return false
-            }
-            
-            return true
-        }
+        return
+            UserDefaults.standard.string(forKey: keys.city) != nil &&
+            UserDefaults.standard.string(forKey: keys.company) != nil &&
+            UserDefaults.standard.stringArray(forKey: keys.ip) != nil
     }
-    
+
     var hasCountryCode: Bool {
-        get { return UserDefaults.standard.string(forKey: keys.countryCode) != nil }
+        return UserDefaults.standard.string(forKey: keys.countryCode) != nil
     }
-    
+
     var hasPhone: Bool {
-        get { return UserDefaults.standard.string(forKey: keys.phone) != nil }
+        return UserDefaults.standard.string(forKey: keys.phone) != nil
     }
-    
+
     var hasToken: Bool {
-        get { return UserDefaults.standard.string(forKey: keys.token) != nil }
+        return UserDefaults.standard.string(forKey: keys.token) != nil
     }
-    
+
     var hasPassword: Bool {
-        get { return UserDefaults.standard.string(forKey: keys.password) != nil }
+        return UserDefaults.standard.string(forKey: keys.password) != nil
     }
-    
+
     func set(company: Company) {
         UserDefaults.standard.set(company.city, forKey: keys.city)
         UserDefaults.standard.set(company.name, forKey: keys.company)
-        UserDefaults.standard.set(company.ip, forKey: keys.ip)
+        UserDefaults.standard.set(company.ipAddresses, forKey: keys.ip)
     }
-    
+
     func set(countryCode: String) {
         UserDefaults.standard.set(countryCode, forKey: keys.countryCode)
     }
-    
+
     func set(phone: String) {
         UserDefaults.standard.set(phone, forKey: keys.phone)
     }
-    
+
     func set(token: String) {
         UserDefaults.standard.set(token, forKey: keys.token)
     }
-    
+
     func set(password: String) {
         UserDefaults.standard.set(password, forKey: keys.password)
     }
+
     func getCompany() -> Company? {
         guard
             let city = UserDefaults.standard.string(forKey: keys.city),
             let company = UserDefaults.standard.string(forKey: keys.company),
-            let ip = UserDefaults.standard.stringArray(forKey: keys.ip)
+            let ipAddresses = UserDefaults.standard.stringArray(forKey: keys.ip)
         else {
             return nil
         }
-        
-        return Company(city: city, name: company, ip: ip)
+
+        return Company(city: city, name: company, ipAddresses: ipAddresses)
     }
-    
+
     func getCountryCode() -> String? {
         return UserDefaults.standard.string(forKey: keys.countryCode)
     }
-    
+
     func getPhone() -> String? {
         return UserDefaults.standard.string(forKey: keys.phone)
     }
-    
+
     func getToken() -> String? {
         return UserDefaults.standard.string(forKey: keys.token)
     }
-    
+
     func getPassword() -> String? {
         return UserDefaults.standard.string(forKey: keys.password)
     }
-    
+
     func clearCache() {
         let userDefaults = UserDefaults.standard
-        
+
         userDefaults.removeObject(forKey: keys.city)
         userDefaults.removeObject(forKey: keys.company)
         userDefaults.removeObject(forKey: keys.ip)
@@ -128,5 +122,5 @@ class UserDefaultsCacheManager : CacheManager {
         userDefaults.removeObject(forKey: keys.token)
         userDefaults.removeObject(forKey: keys.password)
     }
-    
+
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5C0B2056248661990056CB06 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B2055248661990056CB06 /* UIColorExtensions.swift */; };
 		5C0B20582488C2DE0056CB06 /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B20572488C2DE0056CB06 /* UIButtonExtensions.swift */; };
+		5C0D98A824EA83A100B9713D /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D98A724EA83A100B9713D /* Atomic.swift */; };
 		5C1934BD2498DABB007FB569 /* Coder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1934BC2498DABB007FB569 /* Coder.swift */; };
 		5C1934BF24990522007FB569 /* SocketExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1934BE24990522007FB569 /* SocketExtensions.swift */; };
 		5C1934C1249926F6007FB569 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1934C0249926F6007FB569 /* RequestResult.swift */; };
@@ -40,7 +41,7 @@
 		5CA2E3BC2484C5FD00D912EA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2E3BB2484C5FD00D912EA /* LoginViewController.swift */; };
 		5CA2E3BE2484F79A00D912EA /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2E3BD2484F79A00D912EA /* StringExtensions.swift */; };
 		5CA2E3C02484F90700D912EA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5CA2E3BF2484F90700D912EA /* Localizable.strings */; };
-		5CAF26CF24E6953A00882339 /* alarmbuttonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF26CE24E6953A00882339 /* alarmbuttonTests.swift */; };
+		5CAF26CF24E6953A00882339 /* AlarmbuttonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF26CE24E6953A00882339 /* AlarmbuttonTests.swift */; };
 		5CC6227A24AE048000FF5964 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6227924AE048000FF5964 /* CacheManager.swift */; };
 		5CEE108E2492316900EF8095 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEE108D2492316900EF8095 /* LoginPresenter.swift */; };
 		5CEE1090249293F200EF8095 /* LoginContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEE108F249293F200EF8095 /* LoginContract.swift */; };
@@ -68,6 +69,7 @@
 		40BDD0A6B20C14EBD3B63285 /* Pods-alarmbuttonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarmbuttonTests.debug.xcconfig"; path = "Target Support Files/Pods-alarmbuttonTests/Pods-alarmbuttonTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C0B2055248661990056CB06 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		5C0B20572488C2DE0056CB06 /* UIButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtensions.swift; sourceTree = "<group>"; };
+		5C0D98A724EA83A100B9713D /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
 		5C1934BC2498DABB007FB569 /* Coder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coder.swift; sourceTree = "<group>"; };
 		5C1934BE24990522007FB569 /* SocketExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketExtensions.swift; sourceTree = "<group>"; };
 		5C1934C0249926F6007FB569 /* RequestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
@@ -103,7 +105,7 @@
 		5CA2E3BF2484F90700D912EA /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		5CAF26C424E694E000882339 /* alarmbuttonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = alarmbuttonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CAF26C824E694E000882339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5CAF26CE24E6953A00882339 /* alarmbuttonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alarmbuttonTests.swift; sourceTree = "<group>"; };
+		5CAF26CE24E6953A00882339 /* AlarmbuttonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmbuttonTests.swift; sourceTree = "<group>"; };
 		5CC6227924AE048000FF5964 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		5CEE108D2492316900EF8095 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		5CEE108F249293F200EF8095 /* LoginContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContract.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				5CFE735A249F499A0068533B /* PhoneMask.swift */,
 				5CC6227924AE048000FF5964 /* CacheManager.swift */,
 				5C1E3F0524B7508C002FABCF /* ContainerExtensions.swift */,
+				5C0D98A724EA83A100B9713D /* Atomic.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -262,7 +265,7 @@
 		5CAF26C524E694E000882339 /* alarmbuttonTests */ = {
 			isa = PBXGroup;
 			children = (
-				5CAF26CE24E6953A00882339 /* alarmbuttonTests.swift */,
+				5CAF26CE24E6953A00882339 /* AlarmbuttonTests.swift */,
 				5CAF26C824E694E000882339 /* Info.plist */,
 			);
 			path = alarmbuttonTests;
@@ -325,6 +328,7 @@
 				5CA2E390247B96F700D912EA /* Frameworks */,
 				5CA2E391247B96F700D912EA /* Resources */,
 				29FE0247723DA648FD8A7FC4 /* [CP] Embed Pods Frameworks */,
+				5C899ED924ECEF0A00C7EF69 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -430,6 +434,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-alarmbutton/Pods-alarmbutton-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		5C899ED924ECEF0A00C7EF69 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n   swiftlint\nelse\n    echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n    exit 1\nfi\n";
+		};
 		A668B78B655B7EA3C87B3051 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -487,6 +508,7 @@
 				5CFE736424A081810068533B /* PasswordPresenter.swift in Sources */,
 				5CFE735B249F499B0068533B /* PhoneMask.swift in Sources */,
 				5C45181C24A9A00D007FF82A /* CancelAlarmRequestResult.swift in Sources */,
+				5C0D98A824EA83A100B9713D /* Atomic.swift in Sources */,
 				5C8BA7B724A7517200384C37 /* MainContract.swift in Sources */,
 				5C1934C92499D8CE007FB569 /* CompaniesDTO.swift in Sources */,
 				5C1E3F0624B7508C002FABCF /* ContainerExtensions.swift in Sources */,
@@ -506,7 +528,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CAF26CF24E6953A00882339 /* alarmbuttonTests.swift in Sources */,
+				5CAF26CF24E6953A00882339 /* AlarmbuttonTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

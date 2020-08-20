@@ -17,40 +17,39 @@ protocol LocationService {
     func stopLocationSharing()
 }
 
-class LocationServiceImpl : NSObject {
-    
+class LocationServiceImpl: NSObject {
+
     let locationManager: CLLocationManager
     let networkService: NetworkService
-    
+
     var addresses = [InetAddress]()
     var currentAddressIndex = 0
-    
-    // TODO: Make it thread-safe
-    private(set) var lastLatitude: Double? = nil
-    private(set) var lastLongitude: Double? = nil
-    
+
+    @Atomic private(set) var lastLatitude: Double?
+    @Atomic private(set) var lastLongitude: Double?
+
     init(networkService: NetworkService) {
         self.networkService = networkService
-        
+
         locationManager = CLLocationManager()
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.showsBackgroundLocationIndicator = true
-    
+
         super.init()
-        
+
         locationManager.delegate = self
     }
-    
+
     private func sendUpdateLocationRequest(latitude: Double, longitude: Double, accuracy: Double, speed: Double) {
         guard addresses.count > 0 else {
             return
         }
-        
+
         let address = addresses[currentAddressIndex % addresses.count]
-        
+
         if !networkService.isStarted {
             do {
                 try networkService.start()
@@ -59,35 +58,35 @@ class LocationServiceImpl : NSObject {
                 return
             }
         }
-        
+
         let request = UpdateLocationRequest(
             latitude: latitude,
             longitude: longitude,
             accuracy: accuracy,
             speed: speed
         )
-        
+
         networkService.send(request: request, to: address) { success in
             if !success {
                 self.currentAddressIndex += 1
             }
         }
     }
-        
+
 }
 
 // MARK: CLLocationManagerDelegate
 
-extension LocationServiceImpl : CLLocationManagerDelegate {
-    
+extension LocationServiceImpl: CLLocationManagerDelegate {
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else {
             return
         }
-        
+
         lastLatitude = location.coordinate.latitude
         lastLongitude = location.coordinate.longitude
-        
+
         sendUpdateLocationRequest(
             latitude: location.coordinate.latitude,
             longitude: location.coordinate.longitude,
@@ -95,34 +94,34 @@ extension LocationServiceImpl : CLLocationManagerDelegate {
             speed: location.speed
         )
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         // TODO: Implement this
     }
-    
+
 }
 
 // MARK: LocationService
 
-extension LocationServiceImpl : LocationService {
-    
+extension LocationServiceImpl: LocationService {
+
     func requestAuthorization() {
         locationManager.requestAlwaysAuthorization()
     }
-    
+
     func startLocationSharing(addresses: [InetAddress], initialAddressIndex: Int) {
         self.addresses = addresses
         self.currentAddressIndex = initialAddressIndex
-        
+
         locationManager.startUpdatingLocation()
     }
-    
+
     func stopLocationSharing() {
         locationManager.stopUpdatingLocation()
-        
+
         if networkService.isStarted {
             networkService.stop()
         }
     }
-    
+
 }

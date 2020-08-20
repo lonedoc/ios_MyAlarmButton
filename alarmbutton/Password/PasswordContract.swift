@@ -9,11 +9,11 @@
 import UIKit
 import Foundation
 
-protocol IPasswordView : UIViewController, AlertDialog {
+protocol IPasswordView: UIViewController, AlertDialog {
     func updateTimer(text: String)
     func setProceedButtonEnabled(_ enabled: Bool)
     func showRetryDialog(code: Int)
-    func openMainScreen(phone: String, password: String, ip: [String], currentIpIndex: Int)
+    func openMainScreen(phone: String, password: String, ipAddresses: [String], currentIpIndex: Int)
     func openLoginScreen()
 }
 

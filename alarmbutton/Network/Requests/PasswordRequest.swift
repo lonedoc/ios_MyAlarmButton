@@ -8,18 +8,18 @@
 
 import Foundation
 
-class PasswordRequest : Request {
-    
+class PasswordRequest: Request {
+
     private let phone: String
-    
+
     init(phone: String) {
         self.phone = phone
     }
-    
+
     var type: RequestType {
         return .password
     }
-    
+
     func toString() -> String {
         return """
         {
@@ -28,5 +28,5 @@ class PasswordRequest : Request {
         }
         """
     }
-    
+
 }

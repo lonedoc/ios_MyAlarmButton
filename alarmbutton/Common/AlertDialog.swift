@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol AlertDialog { // TODO: Find more apropriate name
+protocol AlertDialog {
     func showAlertDialog(title: String, message: String, completion: ((UIAlertAction) -> Void)?)
 }
 
