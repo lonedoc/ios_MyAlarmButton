@@ -31,6 +31,8 @@ class MainView: UIView {
         addSubview(exitButton)
         addSubview(alarmButton)
         addSubview(cancelButton)
+        addSubview(topView)
+        addSubview(bottomView)
     }
 
     private func setupConstraints() {
@@ -51,9 +53,33 @@ class MainView: UIView {
         cancelButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor).isActive = true
         cancelButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor).isActive = true
         cancelButton.bottomAnchor.constraint(equalTo: exitButton.topAnchor).isActive = true
+
+        topView.translatesAutoresizingMaskIntoConstraints = false
+        topView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        topView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        topView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        topView.bottomAnchor.constraint(equalTo: alarmButton.topAnchor).isActive = true
+
+        bottomView.translatesAutoresizingMaskIntoConstraints = false
+        bottomView.topAnchor.constraint(equalTo: exitButton.bottomAnchor).isActive = true
+        bottomView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        bottomView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        bottomView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
     }
 
     // MARK: Views
+
+    let topView: UIView = {
+        var view = UIView(frame: .zero)
+        view.backgroundColor = .errorColor
+        return view
+    }()
+
+    let bottomView: UIView = {
+        var view = UIView(frame: .zero)
+        view.backgroundColor = .errorColorDark
+        return view
+    }()
 
     let alarmButton: UIButton = {
         var button = UIButton(frame: .zero)

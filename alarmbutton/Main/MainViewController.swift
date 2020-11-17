@@ -72,9 +72,11 @@ extension MainViewController: MainContract.View {
     func setAlarmButtonHidden(_ value: Bool) {
         DispatchQueue.main.async {
             self.rootView.alarmButton.isHidden = value
+            self.rootView.topView.backgroundColor = .errorColor
 
             if !value {
                 self.rootView.exitButton.setBackgroundColor(.errorColorDark, for: .normal)
+                self.rootView.bottomView.backgroundColor = .errorColorDark
             }
         }
     }
@@ -82,9 +84,11 @@ extension MainViewController: MainContract.View {
     func setCancelButtonHidden(_ value: Bool) {
         DispatchQueue.main.async {
             self.rootView.cancelButton.isHidden = value
+            self.rootView.topView.backgroundColor = .secondaryColor
 
             if !value {
                 self.rootView.exitButton.setBackgroundColor(.secondaryColorDark, for: .normal)
+                self.rootView.bottomView.backgroundColor = .secondaryColorDark
             }
         }
     }
