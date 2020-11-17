@@ -24,16 +24,8 @@ class RegistrationRequest: Request {
 
     func toString() -> String {
         return """
-        {
-            "$c$": "reg",
-            "id": "879A8884-1D0C-444F-8003-765A747B5C76",
-            "os": "ios",
-            "online": "0",
-            "keeplive": "10",
-            "username": "\(phone)",
-            "password": "\(password)"
-        }
-        """
+            {"$c$": "reg","id": "879A8884-1D0C-444F-8003-765A747B5C76","os": "ios","online": "0","keeplive": "10","username": "\(phone)","password": "\(password)"}
+            """
     }
 
 }

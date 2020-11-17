@@ -13,9 +13,9 @@ class UpdateLocationRequest: Request {
     private let latitude: Double
     private let longitude: Double
     private let accuracy: Double
-    private let speed: Double
+    private let speed: Int
 
-    init(latitude: Double, longitude: Double, accuracy: Double, speed: Double) {
+    init(latitude: Double, longitude: Double, accuracy: Double, speed: Int) {
         self.latitude = latitude
         self.longitude = longitude
         self.accuracy = accuracy
@@ -28,15 +28,9 @@ class UpdateLocationRequest: Request {
 
     func toString() -> String {
         return """
-        {
-            "$c$": "mobalarm",
-            "id": "879A8884-1D0C-444F-8003-765A747B5C76",
-            "lat": \(latitude),
-            "lon": \(longitude),
-            "accuracy": \(accuracy),
-            "speed": \(speed)
-        }
-        """
+            {"$c$": "mobalarm","id": "879A8884-1D0C-444F-8003-765A747B5C76","lat": \(latitude),"lon": \(longitude),"accuracy": \(accuracy),"speed": \(speed)}
+            """
     }
 
 }
+

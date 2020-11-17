@@ -33,7 +33,7 @@ class LocationServiceImpl: NSObject {
 
         locationManager = CLLocationManager()
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.distanceFilter = 5
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.showsBackgroundLocationIndicator = true
@@ -43,7 +43,7 @@ class LocationServiceImpl: NSObject {
         locationManager.delegate = self
     }
 
-    private func sendUpdateLocationRequest(latitude: Double, longitude: Double, accuracy: Double, speed: Double) {
+    private func sendUpdateLocationRequest(latitude: Double, longitude: Double, accuracy: Double, speed: Int) {
         guard addresses.count > 0 else {
             return
         }
@@ -91,14 +91,13 @@ extension LocationServiceImpl: CLLocationManagerDelegate {
             latitude: location.coordinate.latitude,
             longitude: location.coordinate.longitude,
             accuracy: location.horizontalAccuracy,
-            speed: location.speed
+            speed: Int(abs(location.speed * 3.6))
         )
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         // TODO: Implement this
     }
-
 }
 
 // MARK: LocationService

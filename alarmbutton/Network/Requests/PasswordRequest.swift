@@ -22,11 +22,8 @@ class PasswordRequest: Request {
 
     func toString() -> String {
         return """
-        {
-            "$c$": "getpassword",
-            "phone": "\(phone)"
-        }
-        """
+            {"$c$": "getpassword","phone": "\(phone)"}
+            """
     }
 
 }

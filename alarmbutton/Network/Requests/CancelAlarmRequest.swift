@@ -26,14 +26,8 @@ class CancelAlarmRequest: Request {
 
     func toString() -> String {
         return """
-        {
-            "$c$": "cancelalarm",
-            "id": "879A8884-1D0C-444F-8003-765A747B5C76",
-            "code": "\(code)",
-            "lat": \(latitude),
-            "lon": \(longitude)
-        }
-        """
+            {"$c$": "cancelalarm","id": "879A8884-1D0C-444F-8003-765A747B5C76","code": "\(code)","lat": \(latitude),"lon": \(longitude)}
+            """
     }
 
 }

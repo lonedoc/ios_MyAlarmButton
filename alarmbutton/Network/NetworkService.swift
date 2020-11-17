@@ -77,31 +77,23 @@ extension NetworkServiceImpl: RubegSocketDelegate {
             return
         }
 
-        guard let command = jsonObject["$c$"] as? String else {
-            return
-        }
+        guard let command = jsonObject["$c$"] as? String else { return }
 
         if command == "regok" {
-            guard let tid = jsonObject["tid"] as? String else {
-                return
-            }
+            guard let tid = jsonObject["tid"] as? String else { return }
 
             token = tid
             cacheManager.set(token: tid)
 
             NotificationCenter.default.post(name: .didReceiveRegistrationResult, object: nil)
         } else if command == "getpassword" {
-            guard let result = jsonObject["result"] as? String else {
-                return
-            }
+            guard let result = jsonObject["result"] as? String else { return }
 
             let success = result == "ok"
 
             NotificationCenter.default.post(name: .didReceivePasswordRequestResult, object: success)
         } else if command == "cancelalarm" {
-            guard let resultText = jsonObject["result"] as? String else {
-                return
-            }
+            guard let resultText = jsonObject["result"] as? String else { return }
 
             let result: CancelAlarmRequestResult
 
@@ -116,9 +108,7 @@ extension NetworkServiceImpl: RubegSocketDelegate {
 
             NotificationCenter.default.post(name: .didReceiveCancelAlarmRequestResult, object: result)
         } else if command == "mobalarm" {
-            guard let resultText = jsonObject["result"] as? String else {
-                return
-            }
+            guard let resultText = jsonObject["result"] as? String else { return }
 
             if resultText == "tokennotreg" {
                 NotificationCenter.default.post(name: .didReceiveInvalidTokenMessage, object: nil)

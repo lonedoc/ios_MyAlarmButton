@@ -8,6 +8,7 @@
 
 import Foundation
 
+// swiftlint:disable identifier_name
 enum CancelAlarmRequestResult {
     case ok, wrongCode, unknown
 }
