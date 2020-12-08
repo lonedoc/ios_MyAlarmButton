@@ -28,58 +28,32 @@ class MainView: UIView {
     }
 
     private func setupViews() {
-        addSubview(exitButton)
         addSubview(alarmButton)
         addSubview(cancelButton)
-        addSubview(topView)
-        addSubview(bottomView)
+        addSubview(exitButton)
     }
 
     private func setupConstraints() {
         exitButton.translatesAutoresizingMaskIntoConstraints = false
-        exitButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
-        exitButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor).isActive = true
-        exitButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor).isActive = true
-        exitButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        exitButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        exitButton.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
+        exitButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        exitButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
 
         alarmButton.translatesAutoresizingMaskIntoConstraints = false
-        alarmButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
+        alarmButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         alarmButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor).isActive = true
         alarmButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor).isActive = true
-        alarmButton.bottomAnchor.constraint(equalTo: exitButton.topAnchor).isActive = true
+        alarmButton.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
 
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        cancelButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
+        cancelButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         cancelButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor).isActive = true
         cancelButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor).isActive = true
-        cancelButton.bottomAnchor.constraint(equalTo: exitButton.topAnchor).isActive = true
-
-        topView.translatesAutoresizingMaskIntoConstraints = false
-        topView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        topView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        topView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        topView.bottomAnchor.constraint(equalTo: alarmButton.topAnchor).isActive = true
-
-        bottomView.translatesAutoresizingMaskIntoConstraints = false
-        bottomView.topAnchor.constraint(equalTo: exitButton.bottomAnchor).isActive = true
-        bottomView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        bottomView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        bottomView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        cancelButton.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
     }
 
     // MARK: Views
-
-    let topView: UIView = {
-        var view = UIView(frame: .zero)
-        view.backgroundColor = .errorColor
-        return view
-    }()
-
-    let bottomView: UIView = {
-        var view = UIView(frame: .zero)
-        view.backgroundColor = .errorColorDark
-        return view
-    }()
 
     let alarmButton: UIButton = {
         var button = UIButton(frame: .zero)
@@ -102,10 +76,17 @@ class MainView: UIView {
 
     let exitButton: UIButton = {
         var button = UIButton(frame: .zero)
-        button.setTitle("exit".localized.uppercased(), for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        button.setBackgroundColor(.errorColorDark, for: .normal)
+        button.layer.cornerRadius = 30
+
+        let color = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        button.setBackgroundColor(color.withAlphaComponent(0.3), for: .normal)
+        button.setBackgroundColor(color.withAlphaComponent(0.5), for: .highlighted)
+
+        let image = UIImage(named: "exit")
+        button.setImage(image, for: .normal)
+        button.setImage(image, for: .highlighted)
+        button.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 15, right: 15)
+
         return button
     }()
 

@@ -10,8 +10,8 @@ import UIKit
 import Foundation
 
 protocol IMainView: UIViewController, AlertDialog {
-    func setAlarmButtonHidden(_ value: Bool)
-    func setCancelButtonHidden(_ value: Bool)
+    func showAlarmButton()
+    func showCancelButton()
     func showSecurityCodePrompt()
     func showConfirmationPrompt()
     func openLoginScreen()

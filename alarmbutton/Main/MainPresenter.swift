@@ -49,8 +49,7 @@ class MainPresenter {
         if result == .ok {
             locationService.stopLocationSharing()
 
-            view?.setAlarmButtonHidden(false)
-            view?.setCancelButtonHidden(true)
+            view?.showAlarmButton()
         } else if result == .wrongCode {
             view?.showAlertDialog(
                 title: "wrong_code".localized,
@@ -209,8 +208,7 @@ extension MainPresenter: MainContract.Presenter {
             initialAddressIndex: currentIpIndex
         )
 
-        view?.setAlarmButtonHidden(true)
-        view?.setCancelButtonHidden(false)
+        view?.showCancelButton()
     }
 
     func didHitCancelButton() {

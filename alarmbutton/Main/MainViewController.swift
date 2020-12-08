@@ -8,6 +8,7 @@
 
 import UIKit
 import Swinject
+import AudioToolbox
 
 class MainViewController: UIViewController {
 
@@ -47,12 +48,15 @@ class MainViewController: UIViewController {
     }
 
     private func configureControls() {
-        rootView.alarmButton.addTarget(self, action: #selector(didHitAlarmButton), for: .touchUpInside)
+        let recognizer = UILongPressGestureRecognizer(target: self, action: #selector(didHitAlarmButton))
+        recognizer.minimumPressDuration = 2
+        rootView.alarmButton.addGestureRecognizer(recognizer)
         rootView.cancelButton.addTarget(self, action: #selector(didHitCancelButton), for: .touchUpInside)
         rootView.exitButton.addTarget(self, action: #selector(didHitExitButton), for: .touchUpInside)
     }
 
     @objc func didHitAlarmButton() {
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         presenter.didHitAlarmButton()
     }
 
@@ -69,27 +73,17 @@ class MainViewController: UIViewController {
 
 extension MainViewController: MainContract.View {
 
-    func setAlarmButtonHidden(_ value: Bool) {
+    func showAlarmButton() {
         DispatchQueue.main.async {
-            self.rootView.alarmButton.isHidden = value
-            self.rootView.topView.backgroundColor = .errorColor
-
-            if !value {
-                self.rootView.exitButton.setBackgroundColor(.errorColorDark, for: .normal)
-                self.rootView.bottomView.backgroundColor = .errorColorDark
-            }
+            self.rootView.alarmButton.isHidden = false
+            self.rootView.cancelButton.isHidden = true
         }
     }
 
-    func setCancelButtonHidden(_ value: Bool) {
+    func showCancelButton() {
         DispatchQueue.main.async {
-            self.rootView.cancelButton.isHidden = value
-            self.rootView.topView.backgroundColor = .secondaryColor
-
-            if !value {
-                self.rootView.exitButton.setBackgroundColor(.secondaryColorDark, for: .normal)
-                self.rootView.bottomView.backgroundColor = .secondaryColorDark
-            }
+            self.rootView.alarmButton.isHidden = true
+            self.rootView.cancelButton.isHidden = false
         }
     }
 
