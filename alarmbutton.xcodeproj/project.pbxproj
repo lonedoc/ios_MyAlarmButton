@@ -10,6 +10,7 @@
 		5C0B2056248661990056CB06 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B2055248661990056CB06 /* UIColorExtensions.swift */; };
 		5C0B20582488C2DE0056CB06 /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B20572488C2DE0056CB06 /* UIButtonExtensions.swift */; };
 		5C0D98A824EA83A100B9713D /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D98A724EA83A100B9713D /* Atomic.swift */; };
+		5C115080257F8EBC00D8C4AB /* InvisibleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C11507F257F8EBC00D8C4AB /* InvisibleButton.swift */; };
 		5C1934BD2498DABB007FB569 /* Coder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1934BC2498DABB007FB569 /* Coder.swift */; };
 		5C1934BF24990522007FB569 /* SocketExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1934BE24990522007FB569 /* SocketExtensions.swift */; };
 		5C1934C1249926F6007FB569 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1934C0249926F6007FB569 /* RequestResult.swift */; };
@@ -70,6 +71,7 @@
 		5C0B2055248661990056CB06 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		5C0B20572488C2DE0056CB06 /* UIButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtensions.swift; sourceTree = "<group>"; };
 		5C0D98A724EA83A100B9713D /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
+		5C11507F257F8EBC00D8C4AB /* InvisibleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvisibleButton.swift; sourceTree = "<group>"; };
 		5C1934BC2498DABB007FB569 /* Coder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coder.swift; sourceTree = "<group>"; };
 		5C1934BE24990522007FB569 /* SocketExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketExtensions.swift; sourceTree = "<group>"; };
 		5C1934C0249926F6007FB569 /* RequestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				5CC6227924AE048000FF5964 /* CacheManager.swift */,
 				5C1E3F0524B7508C002FABCF /* ContainerExtensions.swift */,
 				5C0D98A724EA83A100B9713D /* Atomic.swift */,
+				5C11507F257F8EBC00D8C4AB /* InvisibleButton.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 				5CEE10922498A9D800EF8095 /* CompaniesGateway.swift in Sources */,
 				5C8BA7B124A61A6A00384C37 /* MainView.swift in Sources */,
 				5C8BA7AC24A46CFA00384C37 /* RegistrationRequest.swift in Sources */,
+				5C115080257F8EBC00D8C4AB /* InvisibleButton.swift in Sources */,
 				5CA2E3B92484C5D200D912EA /* LoginView.swift in Sources */,
 				5C0B2056248661990056CB06 /* UIColorExtensions.swift in Sources */,
 				5C8BA7BD24A88F4700384C37 /* CancelAlarmRequest.swift in Sources */,

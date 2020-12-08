@@ -31,14 +31,21 @@ class MainView: UIView {
         addSubview(alarmButton)
         addSubview(cancelButton)
         addSubview(exitButton)
+        addSubview(minimizeButton)
     }
 
     private func setupConstraints() {
         exitButton.translatesAutoresizingMaskIntoConstraints = false
-        exitButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-        exitButton.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
+        exitButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
+        exitButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -30).isActive = true
         exitButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
         exitButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+
+        minimizeButton.translatesAutoresizingMaskIntoConstraints = false
+        minimizeButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
+        minimizeButton.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
+        minimizeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        minimizeButton.widthAnchor.constraint(equalToConstant: 110).isActive = true
 
         alarmButton.translatesAutoresizingMaskIntoConstraints = false
         alarmButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -86,6 +93,20 @@ class MainView: UIView {
         button.setImage(image, for: .normal)
         button.setImage(image, for: .highlighted)
         button.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 15, right: 15)
+
+        return button
+    }()
+
+    let minimizeButton: InvisibleButton = {
+        let button = InvisibleButton(frame: .zero)
+        button.setTitle("minimize".localized.uppercased(), for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        button.layer.cornerRadius = 15
+
+        let color = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        button.setBackgroundColor(color.withAlphaComponent(0.3), for: .normal)
+        button.setBackgroundColor(color.withAlphaComponent(0.5), for: .highlighted)
 
         return button
     }()

@@ -53,6 +53,7 @@ class MainViewController: UIViewController {
         rootView.alarmButton.addGestureRecognizer(recognizer)
         rootView.cancelButton.addTarget(self, action: #selector(didHitCancelButton), for: .touchUpInside)
         rootView.exitButton.addTarget(self, action: #selector(didHitExitButton), for: .touchUpInside)
+        rootView.minimizeButton.addTarget(self, action: #selector(didHitMinimizeButton), for: .touchUpInside)
     }
 
     @objc func didHitAlarmButton() {
@@ -66,6 +67,14 @@ class MainViewController: UIViewController {
 
     @objc func didHitExitButton() {
         presenter.didHitExitButton()
+    }
+
+    @objc func didHitMinimizeButton() {
+        UIControl().sendAction(
+            #selector(URLSessionTask.suspend),
+            to: UIApplication.shared,
+            for: nil
+        )
     }
 }
 
