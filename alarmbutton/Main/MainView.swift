@@ -63,20 +63,24 @@ class MainView: UIView {
     // MARK: Views
 
     let alarmButton: UIButton = {
-        var button = UIButton(frame: .zero)
-        button.setTitle("alarm".localized.uppercased(), for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        button.setBackgroundColor(.errorColor, for: .normal)
+        var button = UIButton(type: .custom)
+        button.adjustsImageWhenHighlighted = false
+        let image = UIImage(named: "alarm_button")
+        button.setImage(image, for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        button.setBackgroundColor(.white, for: .normal)
         return button
     }()
 
     let cancelButton: UIButton = {
-        var button = UIButton(frame: .zero)
-        button.setTitle("cancel_alarm".localized.uppercased(), for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        button.setBackgroundColor(.secondaryColor, for: .normal)
+        var button = UIButton(type: .custom)
+        button.adjustsImageWhenHighlighted = false
+        let image = UIImage(named: "cancel_alarm_button")
+        button.setImage(image, for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        button.setBackgroundColor(.white, for: .normal)
         button.isHidden = true
         return button
     }()

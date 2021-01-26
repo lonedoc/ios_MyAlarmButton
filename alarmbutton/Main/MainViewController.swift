@@ -49,7 +49,7 @@ class MainViewController: UIViewController {
 
     private func configureControls() {
         let recognizer = UILongPressGestureRecognizer(target: self, action: #selector(didHitAlarmButton))
-        recognizer.minimumPressDuration = 2
+        recognizer.minimumPressDuration = 1.5
         rootView.alarmButton.addGestureRecognizer(recognizer)
         rootView.cancelButton.addTarget(self, action: #selector(didHitCancelButton), for: .touchUpInside)
         rootView.exitButton.addTarget(self, action: #selector(didHitExitButton), for: .touchUpInside)
