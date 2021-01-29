@@ -6,6 +6,7 @@
 //  Copyright © 2020 Rubeg NPO. All rights reserved.
 //
 
+import RubegProtocol_v2_0
 import Foundation
 import CoreLocation
 
@@ -13,7 +14,7 @@ protocol LocationService {
     var lastLatitude: Double? { get }
     var lastLongitude: Double? { get }
     func requestAuthorization()
-    func startLocationSharing(addresses: [InetAddress], initialAddressIndex: Int)
+    func startLocationSharing(addresses: [InetAddress], initialAddressIndex: Int, isTest: Bool)
     func stopLocationSharing()
 }
 
@@ -24,6 +25,8 @@ class LocationServiceImpl: NSObject {
 
     var addresses = [InetAddress]()
     var currentAddressIndex = 0
+
+    private var isTest = false
 
     @Atomic private(set) var lastLatitude: Double?
     @Atomic private(set) var lastLongitude: Double?
@@ -63,7 +66,8 @@ class LocationServiceImpl: NSObject {
             latitude: latitude,
             longitude: longitude,
             accuracy: accuracy,
-            speed: speed
+            speed: speed,
+            isTest: self.isTest
         )
 
         networkService.send(request: request, to: address) { success in
@@ -108,7 +112,8 @@ extension LocationServiceImpl: LocationService {
         locationManager.requestAlwaysAuthorization()
     }
 
-    func startLocationSharing(addresses: [InetAddress], initialAddressIndex: Int) {
+    func startLocationSharing(addresses: [InetAddress], initialAddressIndex: Int, isTest: Bool) {
+        self.isTest = isTest
         self.addresses = addresses
         self.currentAddressIndex = initialAddressIndex
 
@@ -116,6 +121,7 @@ extension LocationServiceImpl: LocationService {
     }
 
     func stopLocationSharing() {
+        isTest = false
         locationManager.stopUpdatingLocation()
 
         if networkService.isStarted {

@@ -15,6 +15,7 @@ protocol IMainView: UIViewController, AlertDialog {
     func showSecurityCodePrompt()
     func showConfirmationPrompt()
     func openLoginScreen()
+    func call(to url: URL)
 }
 
 protocol IMainPresenter {
@@ -22,8 +23,10 @@ protocol IMainPresenter {
     func viewWillAppear()
     func viewWillDisappear()
     func didHitAlarmButton()
+    func didHitTestButton()
     func didHitCancelButton()
     func didHitExitButton()
+    func didHitPhoneButton()
     func didProvideConfirmation()
     func didProvideSecurityCode(_ value: String)
 }

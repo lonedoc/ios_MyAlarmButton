@@ -1,6 +1,6 @@
 PODS:
   - BlueSocket (1.0.52)
-  - RubegProtocol-v2.0 (0.1.4):
+  - RubegProtocol-v2.0 (0.1.13):
     - BlueSocket (~> 1.0.46)
   - Swinject (2.7.1)
 
@@ -18,7 +18,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   BlueSocket: 1acd943acb07b55905291d608649fcfbf8cbd57d
-  RubegProtocol-v2.0: b28ab190ca903e5882f7d30b4c27f3195797de50
+  RubegProtocol-v2.0: 610f492541110fa86bf0f40ca25ae26e1eaa4eb6
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
 
 PODFILE CHECKSUM: bf665b3a13556c94443882bf2bfd0d418d80c45c

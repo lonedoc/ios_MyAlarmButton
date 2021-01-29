@@ -48,17 +48,25 @@ class MainViewController: UIViewController {
     }
 
     private func configureControls() {
-        let recognizer = UILongPressGestureRecognizer(target: self, action: #selector(didHitAlarmButton))
+        let recognizer = UILongPressGestureRecognizer(target: self, action: #selector(didHitAlarmButton(sender:)))
         recognizer.minimumPressDuration = 1.5
         rootView.alarmButton.addGestureRecognizer(recognizer)
+        rootView.testButton.addTarget(self, action: #selector(didHitTestButton), for: .touchUpInside)
         rootView.cancelButton.addTarget(self, action: #selector(didHitCancelButton), for: .touchUpInside)
         rootView.exitButton.addTarget(self, action: #selector(didHitExitButton), for: .touchUpInside)
         rootView.minimizeButton.addTarget(self, action: #selector(didHitMinimizeButton), for: .touchUpInside)
+        rootView.phoneButton.addTarget(self, action: #selector(didHitPhoneButton), for: .touchUpInside)
     }
 
-    @objc func didHitAlarmButton() {
-        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-        presenter.didHitAlarmButton()
+    @objc func didHitAlarmButton(sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+            presenter.didHitAlarmButton()
+        }
+    }
+
+    @objc func didHitTestButton() {
+        presenter.didHitTestButton()
     }
 
     @objc func didHitCancelButton() {
@@ -75,6 +83,10 @@ class MainViewController: UIViewController {
             to: UIApplication.shared,
             for: nil
         )
+    }
+    
+    @objc func didHitPhoneButton() {
+        presenter.didHitPhoneButton()
     }
 }
 
@@ -151,6 +163,17 @@ extension MainViewController: MainContract.View {
 
         DispatchQueue.main.async {
             self.present(navigationController, animated: true)
+        }
+    }
+    
+    func call(to url: URL) {
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        } else {
+            showAlertDialog(
+                title: "error".localized,
+                message: "unable_to_open_url".localized
+            )
         }
     }
 

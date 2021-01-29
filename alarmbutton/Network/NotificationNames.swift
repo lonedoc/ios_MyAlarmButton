@@ -13,4 +13,5 @@ extension Notification.Name {
     static let didReceivePasswordRequestResult = Notification.Name("didReceivePasswordRequestResult")
     static let didReceiveCancelAlarmRequestResult = Notification.Name("didReceiveCancelAlarmRequestResult")
     static let didReceiveInvalidTokenMessage = Notification.Name("didReceiveInvalidTokenMessage")
+    static let didReceiveLocationResponse = Notification.Name("didReceiveLocationResponse")
 }

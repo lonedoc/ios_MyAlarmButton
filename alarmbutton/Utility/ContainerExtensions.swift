@@ -16,12 +16,12 @@ extension Container {
 
         // MARK: Common
 
-        container.register(CacheManager.self) { _ in UserDefaultsCacheManager() }
+        container.register(AppDataRepository.self) { _ in UserDefaultsAppDataRepository() }
         container.register(CompaniesGateway.self) { _ in CompaniesTcpGateway() }
 
         container.register(NetworkService.self) { resolver in
-            let cacheManager = resolver.resolve(CacheManager.self)!
-            return NetworkServiceImpl.createSharedInstance(cacheManager: cacheManager)
+            let appDataRepository = resolver.resolve(AppDataRepository.self)!
+            return NetworkServiceImpl.createSharedInstance(cacheManager: appDataRepository)
         }
 
         container.register(LocationService.self) { resolver in
@@ -32,12 +32,12 @@ extension Container {
         // MARK: Login
 
         container.register(LoginContract.Presenter.self) { resolver in
-            let cacheManager = resolver.resolve(CacheManager.self)!
+            let appDataRepository = resolver.resolve(AppDataRepository.self)!
             let companiesGateway = resolver.resolve(CompaniesGateway.self)!
             let networkService = resolver.resolve(NetworkService.self)!
 
             return LoginPresenter(
-                cacheManager: cacheManager,
+                appDataRepository: appDataRepository,
                 companiesGateway: companiesGateway,
                 networkService: networkService
             )
@@ -52,11 +52,11 @@ extension Container {
 
         let passwordPresenterFactory: (Resolver, String, [String], Int) -> PasswordContract.Presenter = {
             resolver, phone, ipAddresses, initialIpIndex in
-                let cacheManager = resolver.resolve(CacheManager.self)!
+                let appDataRepository = resolver.resolve(AppDataRepository.self)!
                 let networkService = resolver.resolve(NetworkService.self)!
 
                 return PasswordPresenter(
-                    cacheManager: cacheManager,
+                    appDataRepository: appDataRepository,
                     networkService: networkService,
                     phone: phone,
                     ipAddresses: ipAddresses,
@@ -84,10 +84,10 @@ extension Container {
             resolver, phone, password, ipAddresses, initialIpIndex in
                 let networkService = resolver.resolve(NetworkService.self)!
                 let locationService = resolver.resolve(LocationService.self)!
-                let cacheManager = resolver.resolve(CacheManager.self)!
+                let appDataRepository = resolver.resolve(AppDataRepository.self)!
 
                 return MainPresenter(
-                    cacheManager: cacheManager,
+                    appDataRepository: appDataRepository,
                     networkService: networkService,
                     locationService: locationService,
                     phone: phone,

@@ -32,6 +32,8 @@ class MainView: UIView {
         addSubview(cancelButton)
         addSubview(exitButton)
         addSubview(minimizeButton)
+        addSubview(testButton)
+        addSubview(phoneButton)
     }
 
     private func setupConstraints() {
@@ -43,9 +45,21 @@ class MainView: UIView {
 
         minimizeButton.translatesAutoresizingMaskIntoConstraints = false
         minimizeButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
-        minimizeButton.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
+        minimizeButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor, constant: 8).isActive = true
         minimizeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         minimizeButton.widthAnchor.constraint(equalToConstant: 110).isActive = true
+
+        testButton.translatesAutoresizingMaskIntoConstraints = false
+        testButton.bottomAnchor.constraint(equalTo: minimizeButton.bottomAnchor).isActive = true
+        testButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor, constant: -8).isActive = true
+        testButton.widthAnchor.constraint(equalToConstant: 110).isActive = true
+        testButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+
+        phoneButton.translatesAutoresizingMaskIntoConstraints = false
+        phoneButton.bottomAnchor.constraint(equalTo: minimizeButton.topAnchor, constant: -30).isActive = true
+        phoneButton.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
+        phoneButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        phoneButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
 
         alarmButton.translatesAutoresizingMaskIntoConstraints = false
         alarmButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -112,6 +126,37 @@ class MainView: UIView {
         button.setBackgroundColor(color.withAlphaComponent(0.3), for: .normal)
         button.setBackgroundColor(color.withAlphaComponent(0.5), for: .highlighted)
 
+        return button
+    }()
+
+    let testButton: InvisibleButton = {
+        let button = InvisibleButton(frame: .zero)
+        button.setTitle("test".localized.uppercased(), for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        button.layer.cornerRadius = 15
+
+        let color = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        button.setBackgroundColor(color.withAlphaComponent(0.3), for: .normal)
+        button.setBackgroundColor(color.withAlphaComponent(0.5), for: .highlighted)
+
+        return button
+    }()
+
+    let phoneButton: UIButton = {
+        var button = UIButton(frame: .zero)
+        button.layer.cornerRadius = 30
+
+        let color = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        button.setBackgroundColor(color.withAlphaComponent(0.3), for: .normal)
+        button.setBackgroundColor(color.withAlphaComponent(0.5), for: .highlighted)
+
+        let image = UIImage(named: "phone")
+        button.setImage(image, for: .normal)
+        button.setImage(image, for: .highlighted)
+        button.imageEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        button.tintColor = .white
+        button.contentMode = .center
         return button
     }()
 

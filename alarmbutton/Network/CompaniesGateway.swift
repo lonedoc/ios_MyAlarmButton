@@ -6,6 +6,7 @@
 //  Copyright © 2020 Rubeg NPO. All rights reserved.
 //
 
+import RubegProtocol_v2_0
 import Foundation
 import Socket
 
@@ -29,7 +30,7 @@ class CompaniesTcpGateway {
             try socket.setWriteTimeout(value: timeout)
             try socket.setReadTimeout(value: timeout)
 
-            try socket.connect(to: address.address, port: address.port, timeout: timeout)
+            try socket.connect(to: address.ip, port: address.port, timeout: timeout)
             defer { socket.close() }
 
             try socket.write(from: data)

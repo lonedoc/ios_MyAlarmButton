@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         locationService = Container.shared.resolve(LocationService.self)!
         locationService.requestAuthorization()
 
-        let cacheManager = Container.shared.resolve(CacheManager.self)!
+        let cacheManager = Container.shared.resolve(AppDataRepository.self)!
 
         if
             let company = cacheManager.getCompany(),

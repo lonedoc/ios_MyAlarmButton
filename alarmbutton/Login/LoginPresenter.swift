@@ -6,6 +6,7 @@
 //  Copyright © 2020 Rubeg NPO. All rights reserved.
 //
 
+import RubegProtocol_v2_0
 import Foundation
 
 private let queueId = "ru.rubeg38.alarmbutton.loginpresenterqueue"
@@ -13,7 +14,7 @@ private let queueId = "ru.rubeg38.alarmbutton.loginpresenterqueue"
 class LoginPresenter {
 
     private weak var view: LoginContract.View?
-    private let cacheManager: CacheManager
+    private let appDataRepository: AppDataRepository
     private let companiesGateway: CompaniesGateway
     private let networkService: NetworkService
 
@@ -31,8 +32,8 @@ class LoginPresenter {
 
     private var currentIpIndex = 0
 
-    init(cacheManager: CacheManager, companiesGateway: CompaniesGateway, networkService: NetworkService) {
-        self.cacheManager = cacheManager
+    init(appDataRepository: AppDataRepository, companiesGateway: CompaniesGateway, networkService: NetworkService) {
+        self.appDataRepository = appDataRepository
         self.companiesGateway = companiesGateway
         self.networkService = networkService
     }
@@ -76,7 +77,7 @@ class LoginPresenter {
     private func loadCachedData() {
         view?.setCountryCodes(countryCodes)
 
-        if let company = cacheManager.getCompany() {
+        if let company = appDataRepository.getCompany() {
             selectedCity = company.city
             view?.setCity(company.city)
 
@@ -84,7 +85,7 @@ class LoginPresenter {
             view?.setCompany(company.name)
         }
 
-        if let countryCode = cacheManager.getCountryCode() {
+        if let countryCode = appDataRepository.getCountryCode() {
             if let index = countryCodes.firstIndex(of: countryCode) {
                 selectedCountryCode = countryCode
                 view?.setCountryCode(countryCode)
@@ -92,7 +93,7 @@ class LoginPresenter {
             }
         }
 
-        if let phone = cacheManager.getPhone() {
+        if let phone = appDataRepository.getPhone() {
             phoneNumber = phone
             view?.setPhoneNumber(PhoneMask().apply(to: phone))
         }
@@ -107,7 +108,7 @@ class LoginPresenter {
 
             index += 1
 
-            guard let address = try? InetAddress.create(address: ipAddress, port: 8300) else {
+            guard let address = try? InetAddress.create(ip: ipAddress, port: 8300) else {
                 continue
             }
 
@@ -209,7 +210,7 @@ class LoginPresenter {
 
         let ipAddress = company.ipAddresses[currentIpIndex % company.ipAddresses.count]
 
-        guard let address = try? InetAddress.create(address: ipAddress, port: 9010) else {
+        guard let address = try? InetAddress.create(ip: ipAddress, port: 9010) else {
             view?.showAlertDialog(
                 title: "error".localized,
                 message: "address_error_message".localized
@@ -251,15 +252,15 @@ class LoginPresenter {
 
     private func saveDataInCache() {
         if let company = selectedCompany {
-            cacheManager.set(company: company)
+            appDataRepository.set(company: company)
         }
 
         if let countryCode = selectedCountryCode {
-            cacheManager.set(countryCode: countryCode)
+            appDataRepository.set(countryCode: countryCode)
         }
 
         if let phone = phoneNumber {
-            cacheManager.set(phone: extractDigits(text: phone))
+            appDataRepository.set(phone: extractDigits(text: phone))
         }
     }
 

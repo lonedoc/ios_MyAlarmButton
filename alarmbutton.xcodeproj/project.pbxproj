@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		235CEC538631B32B12FB14F3 /* Pods_alarmbuttonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DE44F6EF60995347E300424 /* Pods_alarmbuttonTests.framework */; };
 		5C0B2056248661990056CB06 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B2055248661990056CB06 /* UIColorExtensions.swift */; };
 		5C0B20582488C2DE0056CB06 /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0B20572488C2DE0056CB06 /* UIButtonExtensions.swift */; };
 		5C0D98A824EA83A100B9713D /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0D98A724EA83A100B9713D /* Atomic.swift */; };
@@ -34,6 +35,7 @@
 		5C8BA7B924A7A0EB00384C37 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BA7B824A7A0EB00384C37 /* LocationService.swift */; };
 		5C8BA7BB24A88DD400384C37 /* UpdateLocationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BA7BA24A88DD400384C37 /* UpdateLocationRequest.swift */; };
 		5C8BA7BD24A88F4700384C37 /* CancelAlarmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BA7BC24A88F4700384C37 /* CancelAlarmRequest.swift */; };
+		5C94597325C3B31200D122EF /* AlarmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C94597225C3B31200D122EF /* AlarmRequest.swift */; };
 		5CA2E397247B96F700D912EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2E396247B96F700D912EA /* AppDelegate.swift */; };
 		5CA2E399247B96F700D912EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2E398247B96F700D912EA /* SceneDelegate.swift */; };
 		5CA2E3A0247B96F800D912EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5CA2E39F247B96F800D912EA /* Assets.xcassets */; };
@@ -43,7 +45,7 @@
 		5CA2E3BE2484F79A00D912EA /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2E3BD2484F79A00D912EA /* StringExtensions.swift */; };
 		5CA2E3C02484F90700D912EA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5CA2E3BF2484F90700D912EA /* Localizable.strings */; };
 		5CAF26CF24E6953A00882339 /* AlarmbuttonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF26CE24E6953A00882339 /* AlarmbuttonTests.swift */; };
-		5CC6227A24AE048000FF5964 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6227924AE048000FF5964 /* CacheManager.swift */; };
+		5CC6227A24AE048000FF5964 /* AppDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6227924AE048000FF5964 /* AppDataRepository.swift */; };
 		5CEE108E2492316900EF8095 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEE108D2492316900EF8095 /* LoginPresenter.swift */; };
 		5CEE1090249293F200EF8095 /* LoginContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEE108F249293F200EF8095 /* LoginContract.swift */; };
 		5CEE10922498A9D800EF8095 /* CompaniesGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEE10912498A9D800EF8095 /* CompaniesGateway.swift */; };
@@ -95,6 +97,7 @@
 		5C8BA7B824A7A0EB00384C37 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		5C8BA7BA24A88DD400384C37 /* UpdateLocationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLocationRequest.swift; sourceTree = "<group>"; };
 		5C8BA7BC24A88F4700384C37 /* CancelAlarmRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelAlarmRequest.swift; sourceTree = "<group>"; };
+		5C94597225C3B31200D122EF /* AlarmRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmRequest.swift; sourceTree = "<group>"; };
 		5CA2E393247B96F700D912EA /* Тревожная Кнопка.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Тревожная Кнопка.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CA2E396247B96F700D912EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5CA2E398247B96F700D912EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,7 +111,7 @@
 		5CAF26C424E694E000882339 /* alarmbuttonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = alarmbuttonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CAF26C824E694E000882339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5CAF26CE24E6953A00882339 /* AlarmbuttonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmbuttonTests.swift; sourceTree = "<group>"; };
-		5CC6227924AE048000FF5964 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		5CC6227924AE048000FF5964 /* AppDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataRepository.swift; sourceTree = "<group>"; };
 		5CEE108D2492316900EF8095 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		5CEE108F249293F200EF8095 /* LoginContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContract.swift; sourceTree = "<group>"; };
 		5CEE10912498A9D800EF8095 /* CompaniesGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesGateway.swift; sourceTree = "<group>"; };
@@ -139,6 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				235CEC538631B32B12FB14F3 /* Pods_alarmbuttonTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,7 +183,7 @@
 				5C0B20572488C2DE0056CB06 /* UIButtonExtensions.swift */,
 				5C1934CD249B6723007FB569 /* ArrayExtensions.swift */,
 				5CFE735A249F499A0068533B /* PhoneMask.swift */,
-				5CC6227924AE048000FF5964 /* CacheManager.swift */,
+				5CC6227924AE048000FF5964 /* AppDataRepository.swift */,
 				5C1E3F0524B7508C002FABCF /* ContainerExtensions.swift */,
 				5C0D98A724EA83A100B9713D /* Atomic.swift */,
 				5C11507F257F8EBC00D8C4AB /* InvisibleButton.swift */,
@@ -196,6 +200,7 @@
 				5C8BA7BA24A88DD400384C37 /* UpdateLocationRequest.swift */,
 				5C8BA7BC24A88F4700384C37 /* CancelAlarmRequest.swift */,
 				5C89ED1224C5BA67003463D5 /* RequestType.swift */,
+				5C94597225C3B31200D122EF /* AlarmRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -346,6 +351,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5CAF26CB24E694E000882339 /* Build configuration list for PBXNativeTarget "alarmbuttonTests" */;
 			buildPhases = (
+				C7BA06E6BAF6A78129E40259 /* [CP] Check Pods Manifest.lock */,
 				5CAF26C024E694E000882339 /* Sources */,
 				5CAF26C124E694E000882339 /* Frameworks */,
 				5CAF26C224E694E000882339 /* Resources */,
@@ -476,6 +482,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C7BA06E6BAF6A78129E40259 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-alarmbuttonTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -488,6 +516,7 @@
 				5CFE736024A081610068533B /* PasswordView.swift in Sources */,
 				5C1934CE249B6723007FB569 /* ArrayExtensions.swift in Sources */,
 				5CFE736224A0816F0068533B /* PasswordViewController.swift in Sources */,
+				5C94597325C3B31200D122EF /* AlarmRequest.swift in Sources */,
 				5C1934BF24990522007FB569 /* SocketExtensions.swift in Sources */,
 				5C8BA7A524A32CA200384C37 /* NetworkService.swift in Sources */,
 				5C1934C1249926F6007FB569 /* RequestResult.swift in Sources */,
@@ -518,7 +547,7 @@
 				5C1E3F0624B7508C002FABCF /* ContainerExtensions.swift in Sources */,
 				5CFE736624A081970068533B /* PasswordContract.swift in Sources */,
 				5C1934C324992A10007FB569 /* InetAddress.swift in Sources */,
-				5CC6227A24AE048000FF5964 /* CacheManager.swift in Sources */,
+				5CC6227A24AE048000FF5964 /* AppDataRepository.swift in Sources */,
 				5C0B20582488C2DE0056CB06 /* UIButtonExtensions.swift in Sources */,
 				5CFE735D24A07EDF0068533B /* NavigationController.swift in Sources */,
 				5CEE1090249293F200EF8095 /* LoginContract.swift in Sources */,
@@ -727,6 +756,7 @@
 		};
 		5CAF26CC24E694E000882339 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 40BDD0A6B20C14EBD3B63285 /* Pods-alarmbuttonTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -748,6 +778,7 @@
 		};
 		5CAF26CD24E694E000882339 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D9C978D8EBF4A0688EEA10A8 /* Pods-alarmbuttonTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;

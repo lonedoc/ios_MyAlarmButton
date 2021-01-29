@@ -20,28 +20,28 @@ class NetworkServiceImpl: NetworkService {
 
     private static var shared: NetworkServiceImpl?
 
-    public static func createSharedInstance(cacheManager: CacheManager) -> NetworkServiceImpl {
+    public static func createSharedInstance(cacheManager: AppDataRepository) -> NetworkServiceImpl {
         if let shared = shared { return shared }
 
         shared = NetworkServiceImpl(cacheManager: cacheManager)
         return shared!
     }
 
-    private let cacheManager: CacheManager
+    private let appDataRepository: AppDataRepository
     private var socket: RubegSocket?
     private var token: String?
 
     @Atomic private(set) var isStarted: Bool = false
 
-    private init(cacheManager: CacheManager) {
-        self.cacheManager = cacheManager
+    private init(cacheManager: AppDataRepository) {
+        self.appDataRepository = cacheManager
     }
 
     func start() throws {
-        token = cacheManager.getToken()
-        socket = try RubegSocket()
+        token = appDataRepository.getToken()
+        socket = RubegSocket()
         socket?.delegate = self
-        socket?.open()
+        try socket?.open()
 
         isStarted = true
     }
@@ -52,13 +52,15 @@ class NetworkServiceImpl: NetworkService {
     }
 
     func send(request: Request, to address: InetAddress, completion: @escaping (Bool) -> Void) {
-        let host = Host(address.address, address.port)
+        #if DEBUG
+            print("Reqest: \(request.toString())")
+        #endif
 
         socket?.send(
             message: request.toString(),
             token: request.type == .registration ? nil : token,
-            to: host,
-            completion: completion
+            to: address,
+            complete: completion
         )
     }
 
@@ -82,8 +84,16 @@ extension NetworkServiceImpl: RubegSocketDelegate {
         if command == "regok" {
             guard let tid = jsonObject["tid"] as? String else { return }
 
+            let localRaw = jsonObject["local"] as? Int ?? 0
+            let local = localRaw == 1
+
+            if let phone = jsonObject["phone"] as? String {
+                appDataRepository.set(securityPhone: phone)
+            }
+
             token = tid
-            cacheManager.set(token: tid)
+            appDataRepository.set(token: tid)
+            appDataRepository.set(isLocal: local)
 
             NotificationCenter.default.post(name: .didReceiveRegistrationResult, object: nil)
         } else if command == "getpassword" {
@@ -112,6 +122,8 @@ extension NetworkServiceImpl: RubegSocketDelegate {
 
             if resultText == "tokennotreg" {
                 NotificationCenter.default.post(name: .didReceiveInvalidTokenMessage, object: nil)
+            } else if resultText == "ok" {
+                NotificationCenter.default.post(name: .didReceiveLocationResponse, object: nil)
             }
         }
     }

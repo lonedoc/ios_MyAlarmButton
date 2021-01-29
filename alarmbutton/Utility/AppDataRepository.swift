@@ -8,26 +8,32 @@
 
 import Foundation
 
-protocol CacheManager {
+protocol AppDataRepository {
     var hasCompany: Bool { get }
     var hasCountryCode: Bool { get }
     var hasPhone: Bool { get }
     var hasToken: Bool { get }
     var hasPassword: Bool { get }
+    var hasIsLocal: Bool { get }
+    var hasSecurityPhone: Bool { get }
     func set(company: Company)
     func set(countryCode: String)
     func set(phone: String)
     func set(token: String)
     func set(password: String)
+    func set(isLocal: Bool)
+    func set(securityPhone: String)
     func getCompany() -> Company?
     func getCountryCode() -> String?
     func getPhone() -> String?
     func getToken() -> String?
     func getPassword() -> String?
+    func getIsLocal() -> Bool?
+    func getSecurityPhone() -> String?
     func clearCache()
 }
 
-class UserDefaultsCacheManager: CacheManager {
+class UserDefaultsAppDataRepository: AppDataRepository {
     private let keys = (
         city: "city",
         company: "company",
@@ -35,7 +41,9 @@ class UserDefaultsCacheManager: CacheManager {
         countryCode: "countryCode",
         phone: "phone",
         token: "token",
-        password: "password"
+        password: "password",
+        isLocal: "isLocal",
+        securityPhone: "securityPhone"
     )
 
     var hasCompany: Bool {
@@ -61,6 +69,14 @@ class UserDefaultsCacheManager: CacheManager {
         return UserDefaults.standard.string(forKey: keys.password) != nil
     }
 
+    var hasIsLocal: Bool {
+        return UserDefaults.standard.object(forKey: keys.isLocal) != nil
+    }
+
+    var hasSecurityPhone: Bool {
+        return UserDefaults.standard.string(forKey: keys.securityPhone) != nil
+    }
+
     func set(company: Company) {
         UserDefaults.standard.set(company.city, forKey: keys.city)
         UserDefaults.standard.set(company.name, forKey: keys.company)
@@ -81,6 +97,14 @@ class UserDefaultsCacheManager: CacheManager {
 
     func set(password: String) {
         UserDefaults.standard.set(password, forKey: keys.password)
+    }
+
+    func set(isLocal: Bool) {
+        UserDefaults.standard.set(isLocal, forKey: keys.isLocal)
+    }
+
+    func set(securityPhone: String) {
+        UserDefaults.standard.set(securityPhone, forKey: keys.securityPhone)
     }
 
     func getCompany() -> Company? {
@@ -109,6 +133,18 @@ class UserDefaultsCacheManager: CacheManager {
 
     func getPassword() -> String? {
         return UserDefaults.standard.string(forKey: keys.password)
+    }
+
+    func getIsLocal() -> Bool? {
+        if !hasIsLocal {
+            return nil
+        }
+
+        return UserDefaults.standard.bool(forKey: keys.isLocal)
+    }
+
+    func getSecurityPhone() -> String? {
+        return UserDefaults.standard.string(forKey: keys.securityPhone)
     }
 
     func clearCache() {

@@ -6,6 +6,7 @@
 //  Copyright © 2020 Rubeg NPO. All rights reserved.
 //
 
+import RubegProtocol_v2_0
 import Foundation
 
 private let passwordRequestCode = 0
@@ -14,7 +15,7 @@ private let registrationRequestCode = 1
 class PasswordPresenter {
 
     private weak var view: PasswordContract.View?
-    private let cacheManager: CacheManager
+    private let appDataRepository: AppDataRepository
     private let networkService: NetworkService
 
     private var timer: Timer?
@@ -27,13 +28,13 @@ class PasswordPresenter {
     private var password: String?
 
     init(
-        cacheManager: CacheManager,
+        appDataRepository: AppDataRepository,
         networkService: NetworkService,
         phone: String,
         ipAddresses: [String],
         currentIpIndex: Int = 0
     ) {
-        self.cacheManager = cacheManager
+        self.appDataRepository = appDataRepository
         self.networkService = networkService
         self.ipAddresses = ipAddresses
         self.phone = phone
@@ -57,7 +58,7 @@ class PasswordPresenter {
             return
         }
 
-        cacheManager.set(password: password)
+        appDataRepository.set(password: password)
 
         if networkService.isStarted {
             networkService.stop()
@@ -108,7 +109,7 @@ class PasswordPresenter {
 
         let ipAddress = ipAddresses[currentIpIndex % ipAddresses.count]
 
-        guard let address = try? InetAddress.create(address: ipAddress, port: 9010) else {
+        guard let address = try? InetAddress.create(ip: ipAddress, port: 9010) else {
             view?.showAlertDialog(
                 title: "error".localized,
                 message: "address_error_message".localized
@@ -150,7 +151,7 @@ class PasswordPresenter {
 
         let ipAddress = ipAddresses[currentIpIndex % ipAddresses.count]
 
-        guard let address = try? InetAddress.create(address: ipAddress, port: 9010) else {
+        guard let address = try? InetAddress.create(ip: ipAddress, port: 9010) else {
             view?.showAlertDialog(
                 title: "error".localized,
                 message: "address_error_message".localized
