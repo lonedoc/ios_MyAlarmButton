@@ -13,4 +13,5 @@ enum RequestType {
     case registration
     case updateLocation
     case cancelAlarm
+    case checkConnection
 }

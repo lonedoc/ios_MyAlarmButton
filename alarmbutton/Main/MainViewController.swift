@@ -52,10 +52,17 @@ class MainViewController: UIViewController {
         recognizer.minimumPressDuration = 1.5
         rootView.alarmButton.addGestureRecognizer(recognizer)
         rootView.testButton.addTarget(self, action: #selector(didHitTestButton), for: .touchUpInside)
+        rootView.patrolButton.addTarget(self, action: #selector(didHitPatrolButton), for: .touchUpInside)
         rootView.cancelButton.addTarget(self, action: #selector(didHitCancelButton), for: .touchUpInside)
         rootView.exitButton.addTarget(self, action: #selector(didHitExitButton), for: .touchUpInside)
         rootView.minimizeButton.addTarget(self, action: #selector(didHitMinimizeButton), for: .touchUpInside)
-        rootView.phoneButton.addTarget(self, action: #selector(didHitPhoneButton), for: .touchUpInside)
+        rootView.imagePhoneButton.addTarget(self, action: #selector(didHitPhoneButton), for: .touchUpInside)
+        rootView.textPhoneButton.addTarget(self, action: #selector(didHitPhoneButton), for: .touchUpInside)
+        rootView.segmentedControl.addTarget(self, action: #selector(didChangeMode), for: .valueChanged)
+    }
+
+    @objc func didChangeMode() {
+        presenter.didChangeMode(mode: rootView.segmentedControl.selectedSegmentIndex)
     }
 
     @objc func didHitAlarmButton(sender: UILongPressGestureRecognizer) {
@@ -67,6 +74,10 @@ class MainViewController: UIViewController {
 
     @objc func didHitTestButton() {
         presenter.didHitTestButton()
+    }
+
+    @objc func didHitPatrolButton() {
+        presenter.didHitPatrolButton()
     }
 
     @objc func didHitCancelButton() {
@@ -84,7 +95,7 @@ class MainViewController: UIViewController {
             for: nil
         )
     }
-    
+
     @objc func didHitPhoneButton() {
         presenter.didHitPhoneButton()
     }
@@ -93,18 +104,63 @@ class MainViewController: UIViewController {
 // MARK: MainContract.View
 
 extension MainViewController: MainContract.View {
-
-    func showAlarmButton() {
+    func setModeControlSelectedIndex(_ index: Int) {
         DispatchQueue.main.async {
-            self.rootView.alarmButton.isHidden = false
-            self.rootView.cancelButton.isHidden = true
+            self.rootView.segmentedControl.selectedSegmentIndex = index
         }
     }
 
-    func showCancelButton() {
+    func setModeControlEnabled(_ enabled: Bool) {
         DispatchQueue.main.async {
-            self.rootView.alarmButton.isHidden = true
-            self.rootView.cancelButton.isHidden = false
+            self.rootView.segmentedControl.isEnabled = enabled
+        }
+    }
+
+    func setModeControlHidden(_ hidden: Bool) {
+        DispatchQueue.main.async {
+            self.rootView.segmentedControl.isHidden = hidden
+        }
+    }
+
+    func setImagePhoneButtonHidden(_ hidden: Bool) {
+        DispatchQueue.main.async {
+            self.rootView.imagePhoneButton.isHidden = hidden
+        }
+    }
+
+    func setTextPhoneButtonHidden(_ hidden: Bool) {
+        DispatchQueue.main.async {
+            self.rootView.textPhoneButton.isHidden = hidden
+        }
+    }
+
+    func setTestButtonHidden(_ hidden: Bool) {
+        DispatchQueue.main.async {
+            self.rootView.testButton.isHidden = hidden
+        }
+    }
+
+    func setAlarmButtonHidden(_ hidden: Bool) {
+        DispatchQueue.main.async {
+            self.rootView.alarmButton.isHidden = hidden
+        }
+    }
+
+    func setCancelButtonHidden(_ hidden: Bool) {
+        DispatchQueue.main.async {
+            self.rootView.cancelButton.isHidden = hidden
+        }
+    }
+
+    func setPatrolButtonHidden(_ hidden: Bool) {
+        DispatchQueue.main.async {
+            self.rootView.patrolButton.isHidden = hidden
+        }
+    }
+
+    func setErrorViewHidden(_ hidden: Bool) {
+        DispatchQueue.main.async {
+            self.rootView.errorMessageBackgroundView.isHidden = hidden
         }
     }
 
@@ -165,7 +221,7 @@ extension MainViewController: MainContract.View {
             self.present(navigationController, animated: true)
         }
     }
-    
+
     func call(to url: URL) {
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
@@ -174,6 +230,12 @@ extension MainViewController: MainContract.View {
                 title: "error".localized,
                 message: "unable_to_open_url".localized
             )
+        }
+    }
+
+    func setErrorMessage(_ errorMessage: String) {
+        DispatchQueue.main.async {
+            self.rootView.errorMessageLabel.text = errorMessage
         }
     }
 

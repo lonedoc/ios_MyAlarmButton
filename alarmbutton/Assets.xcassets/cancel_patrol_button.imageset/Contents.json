@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "alarm_button_cancel.png",
+      "filename" : "patrol_button_cancel.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "alarm_button_cancel-1.png",
+      "filename" : "patrol_button_cancel-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "alarm_button_cancel-2.png",
+      "filename" : "patrol_button_cancel-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

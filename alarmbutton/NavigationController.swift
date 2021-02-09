@@ -10,6 +10,10 @@ import UIKit
 
 class NavigationController: UINavigationController {
 
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
         self.modalPresentationStyle = .fullScreen

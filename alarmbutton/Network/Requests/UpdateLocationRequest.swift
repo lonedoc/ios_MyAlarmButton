@@ -15,13 +15,15 @@ class UpdateLocationRequest: Request {
     private let accuracy: Double
     private let speed: Int
     private let isTest: Bool
+    private let isPatrol: Bool
 
-    init(latitude: Double, longitude: Double, accuracy: Double, speed: Int, isTest: Bool) {
+    init(latitude: Double, longitude: Double, accuracy: Double, speed: Int, isTest: Bool, isPatrol: Bool) {
         self.latitude = latitude
         self.longitude = longitude
         self.accuracy = accuracy
         self.speed = speed
         self.isTest = isTest
+        self.isPatrol = isPatrol
     }
 
     var type: RequestType {
@@ -29,10 +31,11 @@ class UpdateLocationRequest: Request {
     }
 
     func toString() -> String {
-        let test = isTest ? ",\"test\": 1" : ""
+//        let test = isTest ? ",\"test\": 1" : ""
         return """
-            {"$c$": "mobalarm","id": "879A8884-1D0C-444F-8003-765A747B5C76","lat": \(latitude),"lon": \(longitude),"accuracy": \(accuracy),"speed": \(speed)\(test)}
-            """
+            {"$c$": "mobalarm","id": "879A8884-1D0C-444F-8003-765A747B5C76","lat": \(latitude),
+            "lon": \(longitude),"accuracy": \(accuracy),"speed": \(speed),"test":\(isTest ? 1 : 0),"patrol":\(isPatrol ? 1 : 0)}
+            """.filter { $0 != "\n" }
     }
 
 }

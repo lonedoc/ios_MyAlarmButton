@@ -15,21 +15,27 @@ protocol AppDataRepository {
     var hasToken: Bool { get }
     var hasPassword: Bool { get }
     var hasIsLocal: Bool { get }
+    var hasPatrolMode: Bool { get }
     var hasSecurityPhone: Bool { get }
+//    var hasIsBlocked: Bool { get }
     func set(company: Company)
     func set(countryCode: String)
     func set(phone: String)
     func set(token: String)
     func set(password: String)
     func set(isLocal: Bool)
+    func set(patrolMode: Bool)
     func set(securityPhone: String)
+//    func set(isBlocked: Bool)
     func getCompany() -> Company?
     func getCountryCode() -> String?
     func getPhone() -> String?
     func getToken() -> String?
     func getPassword() -> String?
     func getIsLocal() -> Bool?
+    func getPatrolMode() -> Bool?
     func getSecurityPhone() -> String?
+//    func getIsBlocked() -> Bool?
     func clearCache()
 }
 
@@ -43,7 +49,9 @@ class UserDefaultsAppDataRepository: AppDataRepository {
         token: "token",
         password: "password",
         isLocal: "isLocal",
-        securityPhone: "securityPhone"
+        patrolMode: "patrolMode",
+        securityPhone: "securityPhone"//,
+//        isBlocked: "isBlocked"
     )
 
     var hasCompany: Bool {
@@ -73,9 +81,17 @@ class UserDefaultsAppDataRepository: AppDataRepository {
         return UserDefaults.standard.object(forKey: keys.isLocal) != nil
     }
 
+    var hasPatrolMode: Bool {
+        return UserDefaults.standard.object(forKey: keys.patrolMode) != nil
+    }
+
     var hasSecurityPhone: Bool {
         return UserDefaults.standard.string(forKey: keys.securityPhone) != nil
     }
+
+//    var hasIsBlocked: Bool {
+//        return UserDefaults.standard.object(forKey: keys.isBlocked) != nil
+//    }
 
     func set(company: Company) {
         UserDefaults.standard.set(company.city, forKey: keys.city)
@@ -103,9 +119,17 @@ class UserDefaultsAppDataRepository: AppDataRepository {
         UserDefaults.standard.set(isLocal, forKey: keys.isLocal)
     }
 
+    func set(patrolMode: Bool) {
+        UserDefaults.standard.set(patrolMode, forKey: keys.patrolMode)
+    }
+
     func set(securityPhone: String) {
         UserDefaults.standard.set(securityPhone, forKey: keys.securityPhone)
     }
+
+//    func set(isBlocked: Bool) {
+//        UserDefaults.standard.set(isBlocked, forKey: keys.isBlocked)
+//    }
 
     func getCompany() -> Company? {
         guard
@@ -143,9 +167,25 @@ class UserDefaultsAppDataRepository: AppDataRepository {
         return UserDefaults.standard.bool(forKey: keys.isLocal)
     }
 
+    func getPatrolMode() -> Bool? {
+        if !hasPatrolMode {
+            return nil
+        }
+
+        return UserDefaults.standard.bool(forKey: keys.patrolMode)
+    }
+
     func getSecurityPhone() -> String? {
         return UserDefaults.standard.string(forKey: keys.securityPhone)
     }
+
+//    func getIsBlocked() -> Bool? {
+//        if !hasIsBlocked {
+//            return nil
+//        }
+//
+//        return UserDefaults.standard.bool(forKey: keys.isBlocked)
+//    }
 
     func clearCache() {
         let userDefaults = UserDefaults.standard

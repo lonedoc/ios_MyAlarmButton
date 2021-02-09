@@ -14,7 +14,7 @@ protocol LocationService {
     var lastLatitude: Double? { get }
     var lastLongitude: Double? { get }
     func requestAuthorization()
-    func startLocationSharing(addresses: [InetAddress], initialAddressIndex: Int, isTest: Bool)
+    func startLocationSharing(addresses: [InetAddress], initialAddressIndex: Int, isTest: Bool, isPatrol: Bool)
     func stopLocationSharing()
 }
 
@@ -27,6 +27,7 @@ class LocationServiceImpl: NSObject {
     var currentAddressIndex = 0
 
     private var isTest = false
+    private var isPatrol = false
 
     @Atomic private(set) var lastLatitude: Double?
     @Atomic private(set) var lastLongitude: Double?
@@ -67,7 +68,8 @@ class LocationServiceImpl: NSObject {
             longitude: longitude,
             accuracy: accuracy,
             speed: speed,
-            isTest: self.isTest
+            isTest: self.isTest,
+            isPatrol: self.isPatrol
         )
 
         networkService.send(request: request, to: address) { success in
@@ -112,8 +114,9 @@ extension LocationServiceImpl: LocationService {
         locationManager.requestAlwaysAuthorization()
     }
 
-    func startLocationSharing(addresses: [InetAddress], initialAddressIndex: Int, isTest: Bool) {
+    func startLocationSharing(addresses: [InetAddress], initialAddressIndex: Int, isTest: Bool, isPatrol: Bool) {
         self.isTest = isTest
+        self.isPatrol = isPatrol
         self.addresses = addresses
         self.currentAddressIndex = initialAddressIndex
 
@@ -122,6 +125,7 @@ extension LocationServiceImpl: LocationService {
 
     func stopLocationSharing() {
         isTest = false
+        isPatrol = false
         locationManager.stopUpdatingLocation()
 
         if networkService.isStarted {

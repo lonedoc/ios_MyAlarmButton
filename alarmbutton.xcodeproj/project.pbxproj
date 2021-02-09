@@ -36,6 +36,7 @@
 		5C8BA7BB24A88DD400384C37 /* UpdateLocationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BA7BA24A88DD400384C37 /* UpdateLocationRequest.swift */; };
 		5C8BA7BD24A88F4700384C37 /* CancelAlarmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BA7BC24A88F4700384C37 /* CancelAlarmRequest.swift */; };
 		5C94597325C3B31200D122EF /* AlarmRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C94597225C3B31200D122EF /* AlarmRequest.swift */; };
+		5C94599625D12CDD00D122EF /* CheckConnectionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C94599525D12CDD00D122EF /* CheckConnectionRequest.swift */; };
 		5CA2E397247B96F700D912EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2E396247B96F700D912EA /* AppDelegate.swift */; };
 		5CA2E399247B96F700D912EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2E398247B96F700D912EA /* SceneDelegate.swift */; };
 		5CA2E3A0247B96F800D912EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5CA2E39F247B96F800D912EA /* Assets.xcassets */; };
@@ -98,6 +99,7 @@
 		5C8BA7BA24A88DD400384C37 /* UpdateLocationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLocationRequest.swift; sourceTree = "<group>"; };
 		5C8BA7BC24A88F4700384C37 /* CancelAlarmRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelAlarmRequest.swift; sourceTree = "<group>"; };
 		5C94597225C3B31200D122EF /* AlarmRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmRequest.swift; sourceTree = "<group>"; };
+		5C94599525D12CDD00D122EF /* CheckConnectionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckConnectionRequest.swift; sourceTree = "<group>"; };
 		5CA2E393247B96F700D912EA /* Тревожная Кнопка.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Тревожная Кнопка.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CA2E396247B96F700D912EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5CA2E398247B96F700D912EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				5C8BA7BC24A88F4700384C37 /* CancelAlarmRequest.swift */,
 				5C89ED1224C5BA67003463D5 /* RequestType.swift */,
 				5C94597225C3B31200D122EF /* AlarmRequest.swift */,
+				5C94599525D12CDD00D122EF /* CheckConnectionRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				5CFE736624A081970068533B /* PasswordContract.swift in Sources */,
 				5C1934C324992A10007FB569 /* InetAddress.swift in Sources */,
 				5CC6227A24AE048000FF5964 /* AppDataRepository.swift in Sources */,
+				5C94599625D12CDD00D122EF /* CheckConnectionRequest.swift in Sources */,
 				5C0B20582488C2DE0056CB06 /* UIButtonExtensions.swift in Sources */,
 				5CFE735D24A07EDF0068533B /* NavigationController.swift in Sources */,
 				5CEE1090249293F200EF8095 /* LoginContract.swift in Sources */,
@@ -711,7 +715,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = TZX223S8SD;
 				INFOPLIST_FILE = alarmbutton/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -719,7 +723,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.12;
+				MARKETING_VERSION = 1.13;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.rubeg38.alarmbutton;
 				PRODUCT_MODULE_NAME = alarmbutton;
 				PRODUCT_NAME = "Тревожная Кнопка";
@@ -736,7 +740,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = TZX223S8SD;
 				INFOPLIST_FILE = alarmbutton/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -744,7 +748,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.12;
+				MARKETING_VERSION = 1.13;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.rubeg38.alarmbutton;
 				PRODUCT_MODULE_NAME = alarmbutton;
 				PRODUCT_NAME = "Тревожная Кнопка";

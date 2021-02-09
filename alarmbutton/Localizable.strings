@@ -6,6 +6,11 @@
   Copyright © 2020 Rubeg NPO. All rights reserved.
 */
 
+"patrol_result_title" = "Патруль";
+"patrol_result_ok" = "Координаты доставлены";
+"alert" = "Тревога";
+"patrol" = "Патруль";
+"call" = "Звонок";
 "test_result_title" = "Проверка работоспособности";
 "test_result_ok" = "Тревожная кнопка работает";
 "test" = "проверка";
