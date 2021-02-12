@@ -236,6 +236,7 @@ extension MainViewController: MainContract.View {
     func setErrorMessage(_ errorMessage: String) {
         DispatchQueue.main.async {
             self.rootView.errorMessageLabel.text = errorMessage
+            self.rootView.errorMessageBackgroundView.isHidden = false
         }
     }
 

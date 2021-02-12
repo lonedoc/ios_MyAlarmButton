@@ -131,6 +131,7 @@ class MainView: UIView {
 
     let errorMessageLabel: UILabel = {
         let label = UILabel()
+        label.numberOfLines = 0
         label.textColor = .red
         label.textAlignment = .center
         return label
