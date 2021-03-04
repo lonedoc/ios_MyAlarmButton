@@ -283,7 +283,7 @@ extension MainPresenter {
             DispatchQueue.main.async {
                 self.localAlarmTimer?.invalidate()
                 self.localAlarmTimer = Timer.scheduledTimer(
-                    withTimeInterval: 60,
+                    withTimeInterval: 30,
                     repeats: false
                 ) { [weak self] _ in
                     self?.viewState = .idle
@@ -405,7 +405,9 @@ extension MainPresenter: MainContract.Presenter {
     }
 
     func didHitCancelButton() {
-        view?.showSecurityCodePrompt()
+        if !isLocal {
+            view?.showSecurityCodePrompt()
+        }
     }
 
     func didHitExitButton() {
