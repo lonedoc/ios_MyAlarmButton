@@ -140,6 +140,20 @@ class MainView: UIView {
     let segmentedControl: UISegmentedControl = {
         var control = UISegmentedControl(items: ["alert".localized, "patrol".localized])
         control.selectedSegmentIndex = 0
+
+        let color = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        if #available(iOS 13.0, *) {
+            control.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+            control.selectedSegmentTintColor = .white
+            control.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: color], for: .selected)
+            control.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+        } else {
+            control.backgroundColor = .white
+            control.tintColor = color
+            control.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
+            control.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: color], for: .normal)
+        }
+
         return control
     }()
 
