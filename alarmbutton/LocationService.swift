@@ -28,7 +28,6 @@ class LocationServiceImpl: NSObject {
 
     private var isTest = false
     private var isPatrol = false
-    private var locationSent = false
 
     @Atomic private(set) var lastLatitude: Double?
     @Atomic private(set) var lastLongitude: Double?
@@ -91,10 +90,6 @@ extension LocationServiceImpl: CLLocationManagerDelegate {
             return
         }
 
-        if locationSent && (isTest || isPatrol) {
-            return
-        }
-
         lastLatitude = location.coordinate.latitude
         lastLongitude = location.coordinate.longitude
 
@@ -105,7 +100,9 @@ extension LocationServiceImpl: CLLocationManagerDelegate {
             speed: Int(abs(location.speed * 3.6))
         )
 
-        locationSent = true
+        if isTest || isPatrol {
+            locationManager.stopUpdatingLocation()
+        }
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -133,7 +130,7 @@ extension LocationServiceImpl: LocationService {
     func stopLocationSharing() {
         isTest = false
         isPatrol = false
-        locationSent = false
+
         locationManager.stopUpdatingLocation()
 
         if networkService.isStarted {
