@@ -25,6 +25,7 @@ protocol IMainView: UIViewController, AlertDialog {
     func showConfirmationPrompt()
     func openLoginScreen()
     func call(to url: URL)
+    func vibrate()
 }
 
 protocol IMainPresenter {

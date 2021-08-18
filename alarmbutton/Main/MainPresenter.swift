@@ -30,9 +30,9 @@ class MainPresenter {
     private var isLocal = false
     private var patrolModeTimeout = 0
 
-    private var onAlarm = false
-    private var onTest = false
-    private var onPatrol = false
+    @Atomic private var onAlarm = false
+    @Atomic private var onTest = false
+    @Atomic private var onPatrol = false
 
     private var patrolModeTimer: Timer?
     private var localAlarmTimer: Timer?
@@ -375,6 +375,8 @@ extension MainPresenter: MainContract.Presenter {
     }
 
     func didHitAlarmButton() {
+        view?.vibrate()
+
         onTest = false
 
         if isLocal {
@@ -388,6 +390,8 @@ extension MainPresenter: MainContract.Presenter {
     }
 
     func didHitTestButton() {
+        view?.vibrate()
+
         onTest = true
 
         if isLocal {
@@ -400,21 +404,28 @@ extension MainPresenter: MainContract.Presenter {
     }
 
     func didHitPatrolButton() {
+        view?.vibrate()
+
         onPatrol = true
         startLocationService(onTest: false, onPatrol: true)
     }
 
     func didHitCancelButton() {
+        view?.vibrate()
+
         if !isLocal {
             view?.showSecurityCodePrompt()
         }
     }
 
     func didHitExitButton() {
+        view?.vibrate()
         view?.showConfirmationPrompt()
     }
 
     func didHitPhoneButton() {
+        view?.vibrate()
+
         guard let phone = appDataRepository.getSecurityPhone() else {
             view?.showAlertDialog(
                 title: "error".localized,

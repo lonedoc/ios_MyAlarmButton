@@ -67,7 +67,6 @@ class MainViewController: UIViewController {
 
     @objc func didHitAlarmButton(sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
-            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
             presenter.didHitAlarmButton()
         }
     }
@@ -89,6 +88,8 @@ class MainViewController: UIViewController {
     }
 
     @objc func didHitMinimizeButton() {
+        self.vibrate()
+
         UIControl().sendAction(
             #selector(URLSessionTask.suspend),
             to: UIApplication.shared,
@@ -230,6 +231,12 @@ extension MainViewController: MainContract.View {
                 title: "error".localized,
                 message: "unable_to_open_url".localized
             )
+        }
+    }
+
+    func vibrate() {
+        DispatchQueue.main.async {
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         }
     }
 
