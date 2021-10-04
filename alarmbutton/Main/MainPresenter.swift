@@ -33,6 +33,7 @@ class MainPresenter {
     @Atomic private var onAlarm = false
     @Atomic private var onTest = false
     @Atomic private var onPatrol = false
+    @Atomic private var logoSize = 0
 
     private var patrolModeTimer: Timer?
     private var localAlarmTimer: Timer?
@@ -119,6 +120,23 @@ extension MainPresenter {
             }
         }
     }
+
+    private func loadCompanyLogo(completion: (() -> Void)? = nil) {
+        DispatchQueue.global(qos: .background).async {
+            do {
+                let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                let fileURL = URL(fileURLWithPath: "company_logo", relativeTo: directoryURL).appendingPathExtension("jpg")
+
+                if let logoData = try? Data(contentsOf: fileURL) {
+                    self.logoSize = logoData.base64EncodedString().count
+                    print("Logo size: \(self.logoSize)")
+                    self.view?.setCompanyLogo(logoData)
+                }
+
+                completion?()
+            }
+        }
+    }
 }
 
 // MARK: View state
@@ -201,6 +219,13 @@ extension MainPresenter {
             name: .didReceiveLocationResponse,
             object: nil
         )
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didLoadCompanyLogo(notification:)),
+            name: .didFetchCompanyLogo,
+            object: nil
+        )
     }
 
     private func unsubscribeFromNotifications() {
@@ -233,6 +258,16 @@ extension MainPresenter {
             name: .didReceiveLocationResponse,
             object: nil
         )
+
+        NotificationCenter.default.removeObserver(
+            self,
+            name: .didFetchCompanyLogo,
+            object: nil
+        )
+    }
+
+    @objc func didLoadCompanyLogo(notification: Notification) {
+        loadCompanyLogo()
     }
 
     @objc func didReceiveAccountBlockedMessage(notification: Notification) {
@@ -334,6 +369,20 @@ extension MainPresenter: MainContract.Presenter {
         self.view = view
     }
 
+    func viewDidLoad() {
+        let request = CheckConnectionRequest()
+        send(request: request, retry: 10)
+
+        loadCompanyLogo {
+            let logoRequest = LogoRequest(size: self.logoSize)
+            self.send(request: logoRequest)
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+            self.view?.hideSplashScreen()
+        }
+    }
+
     func viewWillAppear() {
         subscribeForNotifications()
 
@@ -343,9 +392,6 @@ extension MainPresenter: MainContract.Presenter {
         view?.setModeControlHidden(!patrolModeEnabled)
 
         isLocal = appDataRepository.getIsLocal() ?? false
-
-        let request = CheckConnectionRequest()
-        send(request: request, retry: 10)
     }
 
     func viewWillDisappear() {

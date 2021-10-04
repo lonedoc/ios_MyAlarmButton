@@ -41,9 +41,24 @@ class MainView: UIView {
         errorMessageView.addSubview(errorMessageLabel)
         errorMessageBackgroundView.addSubview(errorMessageView)
         addSubview(errorMessageBackgroundView)
+
+        splashScreen.addSubview(companyLogo)
+        addSubview(splashScreen)
     }
 
     private func setupConstraints() {
+        splashScreen.translatesAutoresizingMaskIntoConstraints = false
+        splashScreen.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        splashScreen.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        splashScreen.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        splashScreen.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+
+        companyLogo.translatesAutoresizingMaskIntoConstraints = false
+        companyLogo.centerXAnchor.constraint(equalTo: splashScreen.centerXAnchor).isActive = true
+        companyLogo.centerYAnchor.constraint(equalTo: splashScreen.centerYAnchor).isActive = true
+        companyLogo.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        companyLogo.heightAnchor.constraint(equalToConstant: 200).isActive = true
+
         errorMessageBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         errorMessageBackgroundView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         errorMessageBackgroundView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
@@ -115,6 +130,17 @@ class MainView: UIView {
     }
 
     // MARK: Views
+
+    let splashScreen: UIView = {
+        let view = UIView(frame: .zero)
+        view.backgroundColor = .white
+        return view
+    }()
+
+    let companyLogo: UIImageView = {
+        let imageView = UIImageView(frame: .zero)
+        return imageView
+    }()
 
     let errorMessageBackgroundView: UIView = {
         let view = UIView(frame: .zero)

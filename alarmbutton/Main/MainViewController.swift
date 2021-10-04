@@ -32,6 +32,7 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         presenter.attach(view: self)
+        presenter.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -105,6 +106,26 @@ class MainViewController: UIViewController {
 // MARK: MainContract.View
 
 extension MainViewController: MainContract.View {
+    func setCompanyLogo(_ data: Data) {
+        DispatchQueue.main.async {
+            self.rootView.companyLogo.image = UIImage(data: data)
+        }
+    }
+
+    func hideSplashScreen() {
+        DispatchQueue.main.async {
+            UIView.animate(
+                withDuration: 1.0,
+                animations: {
+                    self.rootView.splashScreen.alpha = 0
+                },
+                completion: { _ in
+                    self.rootView.splashScreen.isUserInteractionEnabled = false
+                }
+            )
+        }
+    }
+
     func setModeControlSelectedIndex(_ index: Int) {
         DispatchQueue.main.async {
             self.rootView.segmentedControl.selectedSegmentIndex = index

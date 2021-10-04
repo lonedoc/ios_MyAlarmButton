@@ -16,4 +16,5 @@ extension Notification.Name {
     static let didReceiveLocationResponse = Notification.Name("didReceiveLocationResponse")
     static let didReceiveAccountBlockedMessage = Notification.Name("didReceiveAccountBlockedMessage")
     static let didReceivePatrolModeTimeoutValue = Notification.Name("didReceivePatrolModeTimeoutValue")
+    static let didFetchCompanyLogo = Notification.Name("didLoadCompanyLogo")
 }

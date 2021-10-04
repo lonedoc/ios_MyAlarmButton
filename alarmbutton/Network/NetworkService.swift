@@ -37,6 +37,10 @@ class NetworkServiceImpl: NetworkService {
     }
 
     func start() throws {
+        #if DEBUG
+            print("Network service started")
+        #endif
+
         token = appDataRepository.getToken()
         socket = RubegSocket()
         socket?.delegate = self
@@ -46,13 +50,17 @@ class NetworkServiceImpl: NetworkService {
     }
 
     func stop() {
+        #if DEBUG
+            print("Network service stopped")
+        #endif
+
         socket?.close()
         isStarted = false
     }
 
     func send(request: Request, to address: InetAddress, completion: @escaping (Bool) -> Void) {
         #if DEBUG
-            print("Reqest: \(request.toString())")
+            print("Reqest [\(address.ip)]: \(request.toString())")
         #endif
 
         socket?.send(
@@ -62,11 +70,19 @@ class NetworkServiceImpl: NetworkService {
             complete: completion
         )
     }
+
+    private func replace(_ str: String?, symbol: Character, index: Int) -> String? {
+        guard let str = str else { return nil }
+        var arr = Array(str)
+        arr[index] = symbol
+        return String(arr)
+    }
 }
 
 // MARK: RubegSocketDelegate
 
 extension NetworkServiceImpl: RubegSocketDelegate {
+    // swiftlint:disable:next cyclomatic_complexity
     func stringMessageReceived(_ message: String) {
         #if DEBUG
             print("Text message received: \(message)")
@@ -92,6 +108,8 @@ extension NetworkServiceImpl: RubegSocketDelegate {
             NotificationCenter.default.post(name: .didReceivePatrolModeTimeoutValue, object: nil, userInfo: ["timeout": patrolModeTimeout])
         } else if command == "regok" {
             guard let tid = jsonObject["tid"] as? String else { return }
+
+            print("TID: \(tid)")
 
             let patrolMode = jsonObject["patrol"] as? Int ?? 0 != 0
             let local = jsonObject["local"] as? Int == 1
@@ -134,6 +152,31 @@ extension NetworkServiceImpl: RubegSocketDelegate {
                 NotificationCenter.default.post(name: .didReceiveInvalidTokenMessage, object: nil)
             } else if resultText == "ok" {
                 NotificationCenter.default.post(name: .didReceiveLocationResponse, object: nil)
+            }
+        } else if command == "logo" {
+            if
+                let result = jsonObject["result"] as? String,
+                result == "notrefresh"
+            {
+                return
+            }
+
+            guard let base64string = jsonObject["data"] as? String else { return }
+
+            guard let data = Data(base64Encoded: base64string) else {
+                print("Couldn't decode base64 string")
+                return
+            }
+
+            let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let fileURL = URL(fileURLWithPath: "company_logo", relativeTo: directoryURL).appendingPathExtension("jpg")
+
+            do {
+                try data.write(to: fileURL)
+                NotificationCenter.default.post(name: .didFetchCompanyLogo, object: nil)
+            } catch let error {
+                print(error.localizedDescription)
+                return
             }
         }
     }

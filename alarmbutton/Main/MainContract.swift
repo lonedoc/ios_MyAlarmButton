@@ -26,11 +26,14 @@ protocol IMainView: UIViewController, AlertDialog {
     func openLoginScreen()
     func call(to url: URL)
     func vibrate()
+    func setCompanyLogo(_ data: Data)
+    func hideSplashScreen()
 }
 
 protocol IMainPresenter {
     func attach(view: MainContract.View)
     func didChangeMode(mode: Int)
+    func viewDidLoad()
     func viewWillAppear()
     func viewWillDisappear()
     func didHitAlarmButton()
