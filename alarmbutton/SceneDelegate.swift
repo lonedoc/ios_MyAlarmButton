@@ -8,6 +8,7 @@
 
 import UIKit
 import Swinject
+import RubegProtocol_v2_0
 
 @available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -28,19 +29,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let cacheManager = Container.shared.resolve(AppDataRepository.self)!
 
         if
-            let company = cacheManager.getCompany(),
+            let guardService = cacheManager.getGuardService(),
             let phone = cacheManager.getPhone(),
             let password = cacheManager.getPassword(),
             cacheManager.hasCountryCode && cacheManager.hasToken
         {
-            let mainViewController = Container.shared.resolve(
-                MainContract.View.self,
-                arguments: phone, password, company.ipAddresses, 0
-            )!
+            DispatchQueue(label: "background_queue", qos: .background).async {
+                let addresses = InetAddress.createAll(hosts: guardService.hosts, port: 9010)
 
-            window?.rootViewController = mainViewController
-            window?.windowScene = windowScene
-            window?.makeKeyAndVisible()
+                DispatchQueue.main.async {
+                    let mainViewController = Container.shared.resolve(
+                        MainContract.View.self,
+                        arguments: phone, password, addresses, 0
+                    )!
+
+                    self.window?.rootViewController = mainViewController
+                    self.window?.windowScene = windowScene
+                    self.window?.makeKeyAndVisible()
+                }
+            }
         } else {
             let loginViewController = Container.shared.resolve(LoginContract.View.self)!
 

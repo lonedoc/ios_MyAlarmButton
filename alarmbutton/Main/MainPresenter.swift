@@ -24,8 +24,8 @@ class MainPresenter {
     private let phone: String
     private let password: String
 
-    private let ipAddresses: [String]
-    @Atomic private var currentIpIndex = 0
+    private let addresses: [InetAddress]
+    @Atomic private var currentAddressIndex = 0
 
     private var isLocal = false
     private var patrolModeTimeout = 0
@@ -44,25 +44,23 @@ class MainPresenter {
         locationService: LocationService,
         phone: String,
         password: String,
-        ipAddresses: [String],
-        currentIpIndex: Int = 0
+        addresses: [InetAddress],
+        currentAddressIndex: Int = 0
     ) {
         self.appDataRepository = appDataRepository
         self.networkService = networkService
         self.locationService = locationService
         self.phone = phone
         self.password = password
-        self.ipAddresses = ipAddresses
-        self.currentIpIndex = currentIpIndex
+//        self.addresses = [try? InetAddress.create(ip: "192.168.2.110", port: 9010)].compactMap { $0 }
+        self.addresses = addresses
+        self.currentAddressIndex = currentAddressIndex
     }
 
     private func startLocationService(onTest: Bool, onPatrol: Bool) {
-        let addresses = ipAddresses
-            .compactMap { try? InetAddress.create(ip: $0, port: 9010) }
-
         locationService.startLocationSharing(
             addresses: addresses,
-            initialAddressIndex: currentIpIndex,
+            initialAddressIndex: currentAddressIndex,
             isTest: onTest,
             isPatrol: onPatrol
         )
@@ -73,7 +71,7 @@ class MainPresenter {
 
 extension MainPresenter {
     private func send(request: Request, retry: Int = 0) {
-        guard ipAddresses.count > 0 else {
+        guard addresses.count > 0 else {
             view?.showAlertDialog(
                 title: "error".localized,
                 message: "address_not_found_message".localized
@@ -81,15 +79,7 @@ extension MainPresenter {
             return
         }
 
-        let ipAddress = ipAddresses[currentIpIndex % ipAddresses.count]
-
-        guard let address = try? InetAddress.create(ip: ipAddress, port: 9010) else {
-            view?.showAlertDialog(
-                title: "error".localized,
-                message: "address_error_message".localized
-            )
-            return
-        }
+        let address = addresses[currentAddressIndex % addresses.count]
 
         if !networkService.isStarted {
             do {
@@ -108,7 +98,7 @@ extension MainPresenter {
         networkService.send(request: request, to: address) { success in
             if !success {
                 if retry > 0 {
-                    self.currentIpIndex += 1
+                    self.currentAddressIndex += 1
                     self.send(request: request, retry: retry - 1)
                     return
                 }
@@ -143,7 +133,6 @@ extension MainPresenter {
 
 extension MainPresenter {
     private func setViewState(_ state: MainViewState) {
-        // TODO: Reduce switch
         switch state {
         case .idle:
             view?.setAlarmButtonHidden(false)

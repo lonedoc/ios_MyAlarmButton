@@ -9,7 +9,7 @@
 import Foundation
 
 protocol AppDataRepository {
-    var hasCompany: Bool { get }
+    var hasGuardService: Bool { get }
     var hasCountryCode: Bool { get }
     var hasPhone: Bool { get }
     var hasToken: Bool { get }
@@ -17,8 +17,7 @@ protocol AppDataRepository {
     var hasIsLocal: Bool { get }
     var hasPatrolMode: Bool { get }
     var hasSecurityPhone: Bool { get }
-//    var hasIsBlocked: Bool { get }
-    func set(company: Company)
+    func set(guardService: GuardService)
     func set(countryCode: String)
     func set(phone: String)
     func set(token: String)
@@ -26,8 +25,7 @@ protocol AppDataRepository {
     func set(isLocal: Bool)
     func set(patrolMode: Bool)
     func set(securityPhone: String)
-//    func set(isBlocked: Bool)
-    func getCompany() -> Company?
+    func getGuardService() -> GuardService?
     func getCountryCode() -> String?
     func getPhone() -> String?
     func getToken() -> String?
@@ -35,14 +33,13 @@ protocol AppDataRepository {
     func getIsLocal() -> Bool?
     func getPatrolMode() -> Bool?
     func getSecurityPhone() -> String?
-//    func getIsBlocked() -> Bool?
     func clearCache()
 }
 
 class UserDefaultsAppDataRepository: AppDataRepository {
     private let keys = (
         city: "city",
-        company: "company",
+        guardService: "company",
         ip: "ip",
         countryCode: "countryCode",
         phone: "phone",
@@ -50,14 +47,13 @@ class UserDefaultsAppDataRepository: AppDataRepository {
         password: "password",
         isLocal: "isLocal",
         patrolMode: "patrolMode",
-        securityPhone: "securityPhone"//,
-//        isBlocked: "isBlocked"
+        securityPhone: "securityPhone"
     )
 
-    var hasCompany: Bool {
+    var hasGuardService: Bool {
         return
             UserDefaults.standard.string(forKey: keys.city) != nil &&
-            UserDefaults.standard.string(forKey: keys.company) != nil &&
+            UserDefaults.standard.string(forKey: keys.guardService) != nil &&
             UserDefaults.standard.stringArray(forKey: keys.ip) != nil
     }
 
@@ -89,14 +85,10 @@ class UserDefaultsAppDataRepository: AppDataRepository {
         return UserDefaults.standard.string(forKey: keys.securityPhone) != nil
     }
 
-//    var hasIsBlocked: Bool {
-//        return UserDefaults.standard.object(forKey: keys.isBlocked) != nil
-//    }
-
-    func set(company: Company) {
-        UserDefaults.standard.set(company.city, forKey: keys.city)
-        UserDefaults.standard.set(company.name, forKey: keys.company)
-        UserDefaults.standard.set(company.ipAddresses, forKey: keys.ip)
+    func set(guardService: GuardService) {
+        UserDefaults.standard.set(guardService.city, forKey: keys.city)
+        UserDefaults.standard.set(guardService.name, forKey: keys.guardService)
+        UserDefaults.standard.set(guardService.hosts, forKey: keys.ip)
     }
 
     func set(countryCode: String) {
@@ -127,20 +119,16 @@ class UserDefaultsAppDataRepository: AppDataRepository {
         UserDefaults.standard.set(securityPhone, forKey: keys.securityPhone)
     }
 
-//    func set(isBlocked: Bool) {
-//        UserDefaults.standard.set(isBlocked, forKey: keys.isBlocked)
-//    }
-
-    func getCompany() -> Company? {
+    func getGuardService() -> GuardService? {
         guard
             let city = UserDefaults.standard.string(forKey: keys.city),
-            let company = UserDefaults.standard.string(forKey: keys.company),
-            let ipAddresses = UserDefaults.standard.stringArray(forKey: keys.ip)
+            let guardService = UserDefaults.standard.string(forKey: keys.guardService),
+            let hosts = UserDefaults.standard.stringArray(forKey: keys.ip)
         else {
             return nil
         }
 
-        return Company(city: city, name: company, ipAddresses: ipAddresses)
+        return GuardService(city: city, name: guardService, hosts: hosts)
     }
 
     func getCountryCode() -> String? {
@@ -179,19 +167,11 @@ class UserDefaultsAppDataRepository: AppDataRepository {
         return UserDefaults.standard.string(forKey: keys.securityPhone)
     }
 
-//    func getIsBlocked() -> Bool? {
-//        if !hasIsBlocked {
-//            return nil
-//        }
-//
-//        return UserDefaults.standard.bool(forKey: keys.isBlocked)
-//    }
-
     func clearCache() {
         let userDefaults = UserDefaults.standard
 
         userDefaults.removeObject(forKey: keys.city)
-        userDefaults.removeObject(forKey: keys.company)
+        userDefaults.removeObject(forKey: keys.guardService)
         userDefaults.removeObject(forKey: keys.ip)
         userDefaults.removeObject(forKey: keys.countryCode)
         userDefaults.removeObject(forKey: keys.phone)

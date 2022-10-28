@@ -8,6 +8,7 @@
 
 import UIKit
 import Swinject
+import RubegProtocol_v2_0
 
 class PasswordViewController: UIViewController {
 
@@ -173,11 +174,11 @@ extension PasswordViewController: PasswordContract.View {
         }
     }
 
-    func openMainScreen(phone: String, password: String, ipAddresses: [String], currentIpIndex: Int) {
+    func openMainScreen(phone: String, password: String, addresses: [InetAddress], currentAddressIndex: Int) {//ipAddresses: [String], currentIpIndex: Int) {
         DispatchQueue.main.async {
             let mainViewController = Container.shared.resolve(
                 MainContract.View.self,
-                arguments: phone, password, ipAddresses, 0
+                arguments: phone, password, addresses, currentAddressIndex//ipAddresses, 0
             )!
 
             self.present(mainViewController, animated: true)

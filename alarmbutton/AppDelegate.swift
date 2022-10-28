@@ -8,6 +8,7 @@
 
 import UIKit
 import Swinject
+import RubegProtocol_v2_0
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,14 +29,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let cacheManager = Container.shared.resolve(AppDataRepository.self)!
 
             if
-                let company = cacheManager.getCompany(),
+                let guardService = cacheManager.getGuardService(),
                 let phone = cacheManager.getPhone(),
                 let password = cacheManager.getPassword(),
                 cacheManager.hasCountryCode && cacheManager.hasToken
             {
+                let addresses = InetAddress.createAll(hosts: guardService.hosts, port: 9010)
+
                 let mainViewController = Container.shared.resolve(
                     MainContract.View.self,
-                    arguments: phone, password, company.ipAddresses, 0
+                    arguments: phone, password, addresses, 0
                 )!
 
                 window?.rootViewController = mainViewController

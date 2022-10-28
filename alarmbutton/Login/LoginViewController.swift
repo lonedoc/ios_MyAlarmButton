@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Swinject
+import RubegProtocol_v2_0
 
 class LoginViewController: UIViewController {
 
@@ -16,7 +17,7 @@ class LoginViewController: UIViewController {
     private var rootView: LoginView { return self.view as! LoginView } // swiftlint:disable:this force_cast
 
     private var cities = [""]
-    private var companies = [""]
+    private var guardServices = [""]
     private var countryCodes = [""]
 
     init(with presenter: LoginContract.Presenter) {
@@ -59,8 +60,8 @@ class LoginViewController: UIViewController {
         rootView.cityPicker.dataSource = self
         rootView.cityPicker.delegate = self
 
-        rootView.companyPicker.dataSource = self
-        rootView.companyPicker.delegate = self
+        rootView.guardServicePicker.dataSource = self
+        rootView.guardServicePicker.delegate = self
 
         rootView.countryCodePicker.dataSource = self
         rootView.countryCodePicker.delegate = self
@@ -75,7 +76,7 @@ class LoginViewController: UIViewController {
         rootView.doneButtonItem.action = #selector(endInput)
 
         rootView.cityTextField.delegate = self
-        rootView.companyTextField.delegate = self
+        rootView.guardServiceTextField.delegate = self
         rootView.countryCodeTextField.delegate = self
         rootView.phoneTextField.delegate = self
 
@@ -97,7 +98,7 @@ class LoginViewController: UIViewController {
     private func moveFocus(next: Bool) {
         let controls = [
             rootView.cityTextField,
-            rootView.companyTextField,
+            rootView.guardServiceTextField,
             rootView.countryCodeTextField,
             rootView.phoneTextField
         ]
@@ -121,7 +122,7 @@ class LoginViewController: UIViewController {
 
     @objc func endInput() {
         rootView.cityTextField.resignFirstResponder()
-        rootView.companyTextField.resignFirstResponder()
+        rootView.guardServiceTextField.resignFirstResponder()
         rootView.countryCodeTextField.resignFirstResponder()
         rootView.phoneTextField.resignFirstResponder()
     }
@@ -206,8 +207,8 @@ extension LoginViewController: UIPickerViewDataSource {
         switch pickerView {
         case rootView.cityPicker:
             return cities.count
-        case rootView.companyPicker:
-            return companies.count
+        case rootView.guardServicePicker:
+            return guardServices.count
         case rootView.countryCodePicker:
             return countryCodes.count
         default:
@@ -225,8 +226,8 @@ extension LoginViewController: UIPickerViewDelegate {
         switch pickerView {
         case rootView.cityPicker:
             return cities[row]
-        case rootView.companyPicker:
-            return companies[row]
+        case rootView.guardServicePicker:
+            return guardServices[row]
         case rootView.countryCodePicker:
             return countryCodes[row]
         default:
@@ -238,8 +239,8 @@ extension LoginViewController: UIPickerViewDelegate {
         switch pickerView {
         case rootView.cityPicker:
             presenter.didSelect(city: cities[row])
-        case rootView.companyPicker:
-            presenter.didSelect(company: companies[row])
+        case rootView.guardServicePicker:
+            presenter.didSelect(guardService: guardServices[row])
         case rootView.countryCodePicker:
             presenter.didSelect(countryCode: countryCodes[row])
         default:
@@ -260,10 +261,10 @@ extension LoginViewController: LoginContract.View {
         }
     }
 
-    func setCompanies(_ companies: [String]) {
+    func setGuardServices(_ companies: [String]) {
         DispatchQueue.main.async {
-            self.companies = companies
-            self.rootView.companyPicker.reloadAllComponents()
+            self.guardServices = companies
+            self.rootView.guardServicePicker.reloadAllComponents()
         }
     }
 
@@ -280,9 +281,9 @@ extension LoginViewController: LoginContract.View {
         }
     }
 
-    func selectCompanyPickerRow(_ row: Int) {
+    func selectGuardServicePickerRow(_ row: Int) {
         DispatchQueue.main.async {
-            self.rootView.companyPicker.selectRow(row, inComponent: 0, animated: false)
+            self.rootView.guardServicePicker.selectRow(row, inComponent: 0, animated: false)
         }
     }
 
@@ -298,9 +299,9 @@ extension LoginViewController: LoginContract.View {
         }
     }
 
-    func setCompany(_ value: String) {
+    func setGuardService(_ value: String) {
         DispatchQueue.main.async {
-            self.rootView.companyTextField.text = value
+            self.rootView.guardServiceTextField.text = value
         }
     }
 
@@ -343,11 +344,11 @@ extension LoginViewController: LoginContract.View {
         }
     }
 
-    func openPasswordScreen(phone: String, ipAddresses: [String], currentIpIndex: Int = 0) {
+    func openPasswordScreen(phone: String, addresses: [InetAddress], currentAddressIndex: Int) {
         DispatchQueue.main.async {
             let passwordViewController = Container.shared.resolve(
                 PasswordContract.View.self,
-                arguments: phone, ipAddresses, currentIpIndex
+                arguments: phone, addresses, currentAddressIndex
             )!
 
             self.navigationController?.pushViewController(passwordViewController, animated: true)

@@ -8,21 +8,22 @@
 
 import UIKit
 import Foundation
+import RubegProtocol_v2_0
 
 protocol ILoginView: UIViewController, AlertDialog {
     func setCities(_ cities: [String])
-    func setCompanies(_ companies: [String])
+    func setGuardServices(_ guardServices: [String])
     func setCountryCodes(_ countryCodes: [String])
     func selectCityPickerRow(_ row: Int)
-    func selectCompanyPickerRow(_ row: Int)
+    func selectGuardServicePickerRow(_ row: Int)
     func selectCountryCodePickerRow(_ row: Int)
     func setCity(_ value: String)
-    func setCompany(_ value: String)
+    func setGuardService(_ value: String)
     func setCountryCode(_ value: String)
     func setPhoneNumber(_ value: String)
     func setSubmitButtonEnabled(_ enabled: Bool)
     func showRetryDialog()
-    func openPasswordScreen(phone: String, ipAddresses: [String], currentIpIndex: Int)
+    func openPasswordScreen(phone: String, addresses: [InetAddress], currentAddressIndex: Int)
 }
 
 protocol ILoginPresenter {
@@ -31,7 +32,7 @@ protocol ILoginPresenter {
     func viewWillAppear()
     func viewWillDisappear()
     func didSelect(city: String)
-    func didSelect(company: String)
+    func didSelect(guardService: String)
     func didSelect(countryCode: String)
     func didChangePhone(value: String)
     func didHitSubmitButton()

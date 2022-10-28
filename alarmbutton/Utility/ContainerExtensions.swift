@@ -8,6 +8,7 @@
 
 import Foundation
 import Swinject
+import RubegProtocol_v2_0
 
 extension Container {
 
@@ -17,7 +18,7 @@ extension Container {
         // MARK: Common
 
         container.register(AppDataRepository.self) { _ in UserDefaultsAppDataRepository() }
-        container.register(CompaniesGateway.self) { _ in CompaniesTcpGateway() }
+        container.register(GuardServicesGateway.self) { _ in GuardServicesGatewayImpl() }
 
         container.register(NetworkService.self) { resolver in
             let appDataRepository = resolver.resolve(AppDataRepository.self)!
@@ -33,7 +34,7 @@ extension Container {
 
         container.register(LoginContract.Presenter.self) { resolver in
             let appDataRepository = resolver.resolve(AppDataRepository.self)!
-            let companiesGateway = resolver.resolve(CompaniesGateway.self)!
+            let companiesGateway = resolver.resolve(GuardServicesGateway.self)!
             let networkService = resolver.resolve(NetworkService.self)!
 
             return LoginPresenter(
@@ -50,8 +51,8 @@ extension Container {
 
         // MARK: Password
 
-        let passwordPresenterFactory: (Resolver, String, [String], Int) -> PasswordContract.Presenter = {
-            resolver, phone, ipAddresses, initialIpIndex in
+        let passwordPresenterFactory: (Resolver, String, [InetAddress], Int) -> PasswordContract.Presenter =
+            { resolver, phone, addresses, currentAddressIndex in
                 let appDataRepository = resolver.resolve(AppDataRepository.self)!
                 let networkService = resolver.resolve(NetworkService.self)!
 
@@ -59,18 +60,18 @@ extension Container {
                     appDataRepository: appDataRepository,
                     networkService: networkService,
                     phone: phone,
-                    ipAddresses: ipAddresses,
-                    currentIpIndex: initialIpIndex
+                    addresses: addresses,
+                    currentAddressIndex: currentAddressIndex
                 )
             }
 
         container.register(PasswordContract.Presenter.self, factory: passwordPresenterFactory)
 
-        let passwordViewFactory: (Resolver, String, [String], Int) -> PasswordContract.View = {
-            resolver, phone, ipAddresses, initialIpIndex in
+        let passwordViewFactory: (Resolver, String, [InetAddress], Int) -> PasswordContract.View =
+            { resolver, phone, addresses, currentAddressIndex in
                 let presenter = resolver.resolve(
                     PasswordContract.Presenter.self,
-                    arguments: phone, ipAddresses, initialIpIndex
+                    arguments: phone, addresses, currentAddressIndex
                 )!
 
                 return PasswordViewController(with: presenter)
@@ -80,8 +81,8 @@ extension Container {
 
         // MARK: Main
 
-        let mainPresenterFactory: (Resolver, String, String, [String], Int) -> MainContract.Presenter = {
-            resolver, phone, password, ipAddresses, initialIpIndex in
+        let mainPresenterFactory: (Resolver, String, String, [InetAddress], Int) -> MainContract.Presenter =
+            { resolver, phone, password, addresses, currentAddressIndex in
                 let networkService = resolver.resolve(NetworkService.self)!
                 let locationService = resolver.resolve(LocationService.self)!
                 let appDataRepository = resolver.resolve(AppDataRepository.self)!
@@ -92,18 +93,18 @@ extension Container {
                     locationService: locationService,
                     phone: phone,
                     password: password,
-                    ipAddresses: ipAddresses,
-                    currentIpIndex: initialIpIndex
+                    addresses: addresses,
+                    currentAddressIndex: currentAddressIndex
                 )
             }
 
         container.register(MainContract.Presenter.self, factory: mainPresenterFactory)
 
-        let mainViewFactory: (Resolver, String, String, [String], Int) -> MainContract.View = {
-            resolver, phone, password, ipAddresses, initialIpIndex in
+        let mainViewFactory: (Resolver, String, String, [InetAddress], Int) -> MainContract.View =
+            { resolver, phone, password, addresses, currentAddressIndex in
                 let presenter = resolver.resolve(
                     MainContract.Presenter.self,
-                    arguments: phone, password, ipAddresses, initialIpIndex
+                    arguments: phone, password, addresses, currentAddressIndex
                 )!
 
                 return MainViewController(with: presenter)

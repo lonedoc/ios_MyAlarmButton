@@ -21,8 +21,8 @@ class PasswordPresenter {
     private var timer: Timer?
     private var timeLeft: Int = 120
 
-    private let ipAddresses: [String]
-    @Atomic private var currentIpIndex = 0
+    private let addresses: [InetAddress]
+    @Atomic private var currentAddressIndex = 0
 
     private let phone: String
     private var password: String?
@@ -31,14 +31,14 @@ class PasswordPresenter {
         appDataRepository: AppDataRepository,
         networkService: NetworkService,
         phone: String,
-        ipAddresses: [String],
-        currentIpIndex: Int = 0
+        addresses: [InetAddress],
+        currentAddressIndex: Int = 0
     ) {
         self.appDataRepository = appDataRepository
         self.networkService = networkService
-        self.ipAddresses = ipAddresses
         self.phone = phone
-        self.currentIpIndex = currentIpIndex
+        self.addresses = addresses
+        self.currentAddressIndex = currentAddressIndex
     }
 
     @objc func didReceivePasswordRequestResult(notification: Notification) {
@@ -64,7 +64,12 @@ class PasswordPresenter {
             networkService.stop()
         }
 
-        view?.openMainScreen(phone: phone, password: password, ipAddresses: ipAddresses, currentIpIndex: currentIpIndex)
+        view?.openMainScreen(
+            phone: phone,
+            password: password,
+            addresses: addresses,
+            currentAddressIndex: currentAddressIndex
+        )
     }
 
     private func startTimer() {
@@ -99,7 +104,7 @@ class PasswordPresenter {
     }
 
     private func sendPasswordRequest() {
-        guard ipAddresses.count > 0 else {
+        guard addresses.count > 0 else {
             view?.showAlertDialog(
                 title: "error".localized,
                 message: "address_not_found_message".localized
@@ -107,16 +112,7 @@ class PasswordPresenter {
             return
         }
 
-        let ipAddress = ipAddresses[currentIpIndex % ipAddresses.count]
-
-        guard let address = try? InetAddress.create(ip: ipAddress, port: 9010) else {
-            view?.showAlertDialog(
-                title: "error".localized,
-                message: "address_error_message".localized
-            )
-            return
-        }
-
+        let address = addresses[currentAddressIndex % addresses.count]
         let request = PasswordRequest(phone: extractDigits(text: phone))
 
         if !networkService.isStarted {
@@ -141,7 +137,7 @@ class PasswordPresenter {
     }
 
     private func sendRegistrationRequest() {
-        guard ipAddresses.count > 0 else {
+        guard addresses.count > 0 else {
             view?.showAlertDialog(
                 title: "error".localized,
                 message: "address_not_found_message".localized
@@ -149,15 +145,7 @@ class PasswordPresenter {
             return
         }
 
-        let ipAddress = ipAddresses[currentIpIndex % ipAddresses.count]
-
-        guard let address = try? InetAddress.create(ip: ipAddress, port: 9010) else {
-            view?.showAlertDialog(
-                title: "error".localized,
-                message: "address_error_message".localized
-            )
-            return
-        }
+        let address = addresses[currentAddressIndex % addresses.count]
 
         guard let password = password else {
             // TODO: Show error message
@@ -182,7 +170,7 @@ class PasswordPresenter {
 
         networkService.send(request: request, to: address) { success in
             if !success {
-                self.currentIpIndex += 1
+                self.currentAddressIndex += 1
                 self.view?.showRetryDialog(code: registrationRequestCode)
             }
         }

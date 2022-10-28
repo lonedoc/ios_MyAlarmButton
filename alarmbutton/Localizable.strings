@@ -48,8 +48,12 @@
 "security_code" = "Код безопасности";
 "wrong_code" = "Неправильный код";
 "wrong_code_message" = "Не удалось отменить тревогу. Введен неправильный код безопасности";
-"unknown_error" = "Неизвестная ошибка";
 "cancellation_failed_message" = "Не удалось отменить тревогу";
 "phone_number_not_found_message" = "Не указан номер телефона";
 "company_not_found_message" = "Не выбран ЧОП";
 "time_left" = "Оставшееся время:";
+"network_error" = "Не удалось выполнить запрос";
+"address_error" = "Не удалось установить соединение с сервером";
+"server_error" = "Сервер не отвечает";
+"parse_error" = "Не удалось обработать ответ сервера";
+"unknown_error" = "Неизвестная ошибка";

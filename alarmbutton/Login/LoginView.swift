@@ -30,8 +30,8 @@ class LoginView: UIView {
     private func setupViews() {
         contentView.addSubview(cityLabel)
         contentView.addSubview(cityTextField)
-        contentView.addSubview(companyLabel)
-        contentView.addSubview(companyTextField)
+        contentView.addSubview(guardServiceLabel)
+        contentView.addSubview(guardServiceTextField)
         contentView.addSubview(phoneLabel)
         contentView.addSubview(countryCodeTextField)
         contentView.addSubview(phoneTextField)
@@ -45,11 +45,11 @@ class LoginView: UIView {
         toolbar.setItems([prevButtonItem, gap, nextButtonItem, spacer, doneButtonItem], animated: false)
 
         cityTextField.inputView = cityPicker
-        companyTextField.inputView = companyPicker
+        guardServiceTextField.inputView = guardServicePicker
         countryCodeTextField.inputView = countryCodePicker
 
         cityTextField.inputAccessoryView = toolbar
-        companyTextField.inputAccessoryView = toolbar
+        guardServiceTextField.inputAccessoryView = toolbar
         countryCodeTextField.inputAccessoryView = toolbar
         phoneTextField.inputAccessoryView = toolbar
     }
@@ -86,18 +86,18 @@ class LoginView: UIView {
         cityTextField.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
         cityTextField.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
 
-        companyLabel.translatesAutoresizingMaskIntoConstraints = false
-        companyLabel.topAnchor.constraint(equalTo: cityTextField.bottomAnchor, constant: 16).isActive = true
-        companyLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
-        companyLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
+        guardServiceLabel.translatesAutoresizingMaskIntoConstraints = false
+        guardServiceLabel.topAnchor.constraint(equalTo: cityTextField.bottomAnchor, constant: 16).isActive = true
+        guardServiceLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
+        guardServiceLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
 
-        companyTextField.translatesAutoresizingMaskIntoConstraints = false
-        companyTextField.topAnchor.constraint(equalTo: companyLabel.bottomAnchor, constant: 8).isActive = true
-        companyTextField.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
-        companyTextField.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
+        guardServiceTextField.translatesAutoresizingMaskIntoConstraints = false
+        guardServiceTextField.topAnchor.constraint(equalTo: guardServiceLabel.bottomAnchor, constant: 8).isActive = true
+        guardServiceTextField.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
+        guardServiceTextField.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
 
         phoneLabel.translatesAutoresizingMaskIntoConstraints = false
-        phoneLabel.topAnchor.constraint(equalTo: companyTextField.bottomAnchor, constant: 16).isActive = true
+        phoneLabel.topAnchor.constraint(equalTo: guardServiceTextField.bottomAnchor, constant: 16).isActive = true
         phoneLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
         phoneLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
 
@@ -148,14 +148,14 @@ class LoginView: UIView {
         return textField
     }()
 
-    let companyLabel: UILabel = {
+    let guardServiceLabel: UILabel = {
         var label = UILabel(frame: .zero)
         label.textColor = .contrastTextColor
         label.text = "pick_company".localized
         return label
     }()
 
-    let companyTextField: UITextField = {
+    let guardServiceTextField: UITextField = {
         var textField = UITextField(frame: .zero)
         textField.backgroundColor = .contrastBackgroundColor
         textField.borderStyle = .roundedRect
@@ -205,7 +205,7 @@ class LoginView: UIView {
         return picker
     }()
 
-    let companyPicker: UIPickerView = {
+    let guardServicePicker: UIPickerView = {
         var picker = UIPickerView(frame: .zero)
         return picker
     }()

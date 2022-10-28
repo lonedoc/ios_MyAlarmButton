@@ -60,7 +60,7 @@ class NetworkServiceImpl: NetworkService {
 
     func send(request: Request, to address: InetAddress, completion: @escaping (Bool) -> Void) {
         #if DEBUG
-            print("Reqest [\(address.ip)]: \(request.toString())")
+            print("Reqest [\(address.ip):\(address.port)]: \(request.toString())")
         #endif
 
         socket?.send(
